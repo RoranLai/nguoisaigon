@@ -30,4 +30,10 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>DRAWABLE</name>
+			<value>file:/Users/roranlai/Data/Work/Projects/WorkspaceAndroid/NguoiSaiGon/res/drawable</value>
+		</variable>
+	</variableList>
 </projectDescription>
