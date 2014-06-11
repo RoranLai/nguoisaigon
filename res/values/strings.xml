@@ -3,5 +3,26 @@
 
     <string name="app_name">NguoiSaiGon</string>
     <string name="welcomebg">Welcome screen</string>
+    
+    <!-- Define key string -->
+    
+    <!-- Application setting json -->
+    <string name="setting_applink">appLink</string>
+    <string name="setting_parseappid">parseAppId</string>
+    <string name="setting_settingid">settingId</string>
+    
+    <!-- Application News json -->
+    <string name="news_createdate">createDate</string>
+    <string name="news_newscontent">newsContent</string>
+    <string name="news_newsid">newsId</string>
+    <string name="news_ownerinfo">ownerInfo</string>
+    <string name="news_title">title</string>
+    
+    <!-- Application News json -->
+    <string name="events_eventcontent">eventContent</string>
+    <string name="events_eventdate">eventDate</string>
+    <string name="events_eventid">eventId</string>
+    <string name="events_ownerinfo">ownerInfo</string>
+    <string name="events_title">title</string>
 
 </resources>

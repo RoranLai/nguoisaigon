@@ -92,6 +92,26 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class string {
         public static final int app_name=0x7f050000;
+        /**  Application News json 
+         */
+        public static final int events_eventcontent=0x7f05000a;
+        public static final int events_eventdate=0x7f05000b;
+        public static final int events_eventid=0x7f05000c;
+        public static final int events_ownerinfo=0x7f05000d;
+        public static final int events_title=0x7f05000e;
+        /**  Application News json 
+         */
+        public static final int news_createdate=0x7f050005;
+        public static final int news_newscontent=0x7f050006;
+        public static final int news_newsid=0x7f050007;
+        public static final int news_ownerinfo=0x7f050008;
+        public static final int news_title=0x7f050009;
+        /**  Define key string 
+ Application setting json 
+         */
+        public static final int setting_applink=0x7f050002;
+        public static final int setting_parseappid=0x7f050003;
+        public static final int setting_settingid=0x7f050004;
         public static final int welcomebg=0x7f050001;
     }
     public static final class style {
