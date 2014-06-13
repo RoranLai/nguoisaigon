@@ -9,7 +9,7 @@ public class SettingInfo {
 	/**
 	 * @return the appLink
 	 */
-	public Object getAppLink() {
+	public String getAppLink() {
 		return appLink;
 	}
 
