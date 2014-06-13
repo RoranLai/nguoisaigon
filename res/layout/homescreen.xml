@@ -19,7 +19,8 @@
         android:background="@null"
         android:contentDescription="@string/welcomebg"
         android:scaleType="fitCenter"
-        android:src="@drawable/store_normal" />
+        android:src="@drawable/store_normal" 
+        android:onClick="btnstore_click"/>
 
     <ImageButton
         android:id="@+id/btnhomehelp"
@@ -30,7 +31,8 @@
         android:scaleType="fitCenter"
         android:background="@null"
         android:contentDescription="@string/welcomebg"
-        android:src="@drawable/help_normal" />
+        android:src="@drawable/help_normal" 
+        android:onClick="btnhelp_click"/>
     
     <ImageButton
         android:id="@+id/btnhomefacebook"
@@ -41,7 +43,8 @@
         android:scaleType="fitCenter"
         android:background="@null"
         android:contentDescription="@string/welcomebg"
-        android:src="@drawable/fbboard_normal" />
+        android:src="@drawable/fbboard_normal" 
+        android:onClick="btnfacebook_click"/>
     
     <ImageButton
         android:id="@+id/btnhomephone"
@@ -52,7 +55,8 @@
         android:scaleType="fitCenter"
         android:background="@null"
         android:contentDescription="@string/welcomebg"
-        android:src="@drawable/phone_normal" />
+        android:src="@drawable/phone_normal" 
+        android:onClick="btnphone_click"/>
 
     <ImageButton
         android:id="@+id/btnhomemusic"
@@ -63,10 +67,11 @@
         android:background="@null"
         android:contentDescription="@string/welcomebg"
         android:scaleType="fitCenter"
-        android:src="@drawable/musicplayer_normal" />
+        android:src="@drawable/musicplayer_normal" 
+        android:onClick="btnmusic_click"/>
     
     <ImageButton
-        android:id="@+id/btnhomenews"
+        android:id="@+id/btnhomeevents"
         android:layout_width="60sp"
         android:layout_height="90sp"
         android:layout_marginLeft="398sp"
@@ -74,7 +79,8 @@
         android:background="@null"
         android:contentDescription="@string/welcomebg"
         android:scaleType="fitCenter"
-        android:src="@drawable/calendar_normal" />
+        android:src="@drawable/calendar_normal" 
+        android:onClick="btnevents_click"/>
     
     <ImageButton
         android:id="@+id/btnhometv"
@@ -85,6 +91,7 @@
         android:background="@null"
         android:contentDescription="@string/welcomebg"
         android:scaleType="fitCenter"
-        android:src="@drawable/tv_normal" />
+        android:src="@drawable/tv_normal" 
+        android:onClick="btntv_click"/>
 
 </FrameLayout>
