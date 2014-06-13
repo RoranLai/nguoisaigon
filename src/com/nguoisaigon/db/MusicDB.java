@@ -1,8 +1,9 @@
-package com.nguoisaigon.util;
+package com.nguoisaigon.db;
 
+import com.nguoisaigon.entity.MusicInfo;
 import android.content.ContentValues;
 
-public class MusicDB extends DBHelper{
+public class MusicDB extends DBHelper {
 
 	public static final String TABLE_NAME = "music";
 	public static final String COLUMN_OWNER_INFO = "ownerinfo";
@@ -10,7 +11,7 @@ public class MusicDB extends DBHelper{
 	public static final String COLUMN_PLAY_URL = "playurl";
 	public static final String COLUMN_SINGER = "singer";
 	public static final String COLUMN_TITLE = "title";
-	
+
 	public Long insert(MusicInfo info) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_OWNER_INFO, info.getOwnerInfo());

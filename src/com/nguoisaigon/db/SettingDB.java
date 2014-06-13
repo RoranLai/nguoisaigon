@@ -1,14 +1,15 @@
-package com.nguoisaigon.util;
+package com.nguoisaigon.db;
 
+import com.nguoisaigon.entity.SettingInfo;
 import android.content.ContentValues;
 
-public class SettingDB extends DBHelper{
+public class SettingDB extends DBHelper {
 
 	public static final String TABLE_NAME = "setting";
 	public static final String COLUMN_APP_LINK = "applink";
 	public static final String COLUMN_PARSE_APP_ID = "parseappid";
 	public static final String COLUMN_SETTING_ID = "settingid";
-	
+
 	public Long insert(SettingInfo info) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_APP_LINK, info.getAppLink());

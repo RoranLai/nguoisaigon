@@ -1,4 +1,4 @@
-package com.nguoisaigon.util;
+package com.nguoisaigon.db;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;

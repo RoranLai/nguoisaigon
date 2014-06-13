@@ -1,6 +1,6 @@
 package com.nguoisaigon;
 
-import com.nguoisaigon.util.DatabaseHelper;
+import com.nguoisaigon.db.DBHelper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ public class HomeScreenActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
-        DatabaseHelper datahelper = new DatabaseHelper();
+        DBHelper datahelper = new DBHelper();
 	}
 	
 	public void btnstore_click(View view) {

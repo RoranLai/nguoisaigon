@@ -1,4 +1,4 @@
-package com.nguoisaigon.util;
+package com.nguoisaigon.entity;
 
 public class MusicInfo {
 	
