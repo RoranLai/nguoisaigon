@@ -1,13 +1,15 @@
-package com.nguoisaigon;
+package com.nguoisaigon.activity;
+
+import com.nguoisaigon.R;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class PreviewCartActivity extends Activity
+public class Checkout1Activity extends Activity
 {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.preview_cart_layout);
+        setContentView(R.layout.checkout1_layout);
 	}
 }

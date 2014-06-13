@@ -1,13 +1,15 @@
-package com.nguoisaigon;
+package com.nguoisaigon.activity;
+
+import com.nguoisaigon.R;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class MusicActivity extends Activity
+public class Checkout2Activity extends Activity
 {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.music_layout);
+        setContentView(R.layout.checkout2_layout);
 	}
 }

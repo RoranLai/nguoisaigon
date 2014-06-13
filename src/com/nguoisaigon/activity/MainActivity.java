@@ -1,4 +1,4 @@
-package com.nguoisaigon;
+package com.nguoisaigon.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.nguoisaigon.R;
 import com.nguoisaigon.util.SystemUiHider;
 
 /**

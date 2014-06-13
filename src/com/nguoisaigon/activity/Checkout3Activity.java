@@ -1,4 +1,6 @@
-package com.nguoisaigon;
+package com.nguoisaigon.activity;
+
+import com.nguoisaigon.R;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,5 +1,6 @@
-package com.nguoisaigon;
+package com.nguoisaigon.activity;
 
+import com.nguoisaigon.R;
 import com.nguoisaigon.db.DBHelper;
 
 import android.app.Activity;
