@@ -7,6 +7,11 @@ import android.content.Context;
 
 public class MusicDB extends DBHelper {
 
+	/**
+	 * Constructor
+	 * 
+	 * @param vContext
+	 */
 	public MusicDB(Context vContext) {
 		super(vContext);
 	}
@@ -19,6 +24,12 @@ public class MusicDB extends DBHelper {
 	public static final String COLUMN_SINGER = "singer";
 	public static final String COLUMN_TITLE = "title";
 
+	/**
+	 * Insert MusicInfo into database
+	 * 
+	 * @param info
+	 * @return
+	 */
 	public Long insert(MusicInfo info) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_OWNER_INFO, info.getOwnerInfo());

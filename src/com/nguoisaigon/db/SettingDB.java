@@ -37,5 +37,11 @@ public class SettingDB extends DBHelper {
 		return sqlite.update(TABLE_NAME, values, selection, selectionArgs);
 	}
 	
+	public Integer delete(Integer id) {
+		String selection = COLUMN_ID + " = ?";
+		String[] selectionArgs = { String.valueOf(1) };
+		return sqlite.delete(TABLE_NAME, selection, selectionArgs);
+	}
+	
 	
 }

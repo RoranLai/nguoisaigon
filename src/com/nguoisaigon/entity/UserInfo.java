@@ -1,5 +1,7 @@
 package com.nguoisaigon.entity;
 
+import java.util.Calendar;
+
 public class UserInfo {
 
 	private String userId;
@@ -97,6 +99,12 @@ public class UserInfo {
 	 */
 	public void setErnedPoint(Double ernedPoint) {
 		this.ernedPoint = ernedPoint;
+	}
+	
+	public UserInfo(){
+		Calendar cal = Calendar.getInstance();
+		Long interval = cal.getTime().getTime();
+		setUserId(interval.toString());
 	}
 
 }

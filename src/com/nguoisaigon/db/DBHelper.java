@@ -13,11 +13,9 @@ public class DBHelper {
 	protected SQLiteDatabase sqlite;
 	public Context context;
 	private static final String DB_NAME = "nguoisaigondb.sqlite";
-	private static String DB_PATH;
 
 	public DBHelper(Context vContext) {
 		this.context = vContext;
-		DB_PATH = context.getFilesDir().getAbsolutePath() + "/Database/";
 		sqlite = openDatabase();
 	}
 
@@ -29,13 +27,11 @@ public class DBHelper {
 
 		if (!dbFile.exists()) {
 			try {
-
-				copyDatabase();
+				copyDatabase(dbFile);
 			} catch (IOException e) {
 				throw new RuntimeException("Error creating source database", e);
 			}
 		}
-
 		return SQLiteDatabase.openDatabase(dbFile.getPath(), null,
 				SQLiteDatabase.OPEN_READONLY);
 	}
@@ -43,9 +39,16 @@ public class DBHelper {
 	/**
 	 * Copy database file
 	 */
-	private void copyDatabase() throws IOException {
+	private void copyDatabase(File dbFile) throws IOException {
+		// Check folder database
+		File dbPath = new File(dbFile.getParent());
+		if (!dbPath.exists()) {
+			dbPath.mkdirs();
+		}
+		
+		// Copy database file
 		InputStream is = context.getAssets().open(DB_NAME);
-		OutputStream os = new FileOutputStream(DB_PATH + DB_NAME);
+		OutputStream os = new FileOutputStream(dbFile);
 
 		byte[] buffer = new byte[1024];
 		while (is.read(buffer) > 0) {
