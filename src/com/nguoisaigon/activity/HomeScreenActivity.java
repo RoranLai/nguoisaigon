@@ -10,11 +10,13 @@ import android.view.View;
 
 public class HomeScreenActivity extends Activity
 {
+	private DBHelper datahelper;
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
-        DBHelper datahelper = new DBHelper();
+        //setDatahelper(new DBHelper(this));
 	}
 	
 	public void btnstore_click(View view) {
@@ -50,5 +52,13 @@ public class HomeScreenActivity extends Activity
 	public void btntv_click(View view) {
 		Intent intent = new Intent(this, NewsActivity.class);
 		startActivity(intent);
+	}
+
+	public DBHelper getDatahelper() {
+		return datahelper;
+	}
+
+	public void setDatahelper(DBHelper datahelper) {
+		this.datahelper = datahelper;
 	}
 }

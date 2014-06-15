@@ -1,22 +1,66 @@
 package com.nguoisaigon.db;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 
 public class DBHelper {
-	
-	protected SQLiteDatabase sqlite;
-	
-	public DBHelper() {
-		sqlite = null;
-	    try {
-	    	sqlite = SQLiteDatabase.openDatabase("assets/nguoisaigondb.rdb", null,
-	                SQLiteDatabase.OPEN_READONLY);
-	    	sqlite.close();
-	    } catch (SQLiteException e) {
-	        throw e;
-	    }
-	}
-	
 
+	protected SQLiteDatabase sqlite;
+	public Context context;
+	private static final String DB_NAME = "nguoisaigondb.sqlite";
+	private static String DB_PATH;
+
+	public DBHelper(Context vContext) {
+		this.context = vContext;
+		DB_PATH = context.getFilesDir().getAbsolutePath() + "/Database/";
+		sqlite = openDatabase();
+	}
+
+	/**
+	 * Open database connections
+	 */
+	public SQLiteDatabase openDatabase() {
+		File dbFile = context.getDatabasePath(DB_NAME);
+
+		if (!dbFile.exists()) {
+			try {
+
+				copyDatabase();
+			} catch (IOException e) {
+				throw new RuntimeException("Error creating source database", e);
+			}
+		}
+
+		return SQLiteDatabase.openDatabase(dbFile.getPath(), null,
+				SQLiteDatabase.OPEN_READONLY);
+	}
+
+	/**
+	 * Copy database file
+	 */
+	private void copyDatabase() throws IOException {
+		InputStream is = context.getAssets().open(DB_NAME);
+		OutputStream os = new FileOutputStream(DB_PATH + DB_NAME);
+
+		byte[] buffer = new byte[1024];
+		while (is.read(buffer) > 0) {
+			os.write(buffer);
+		}
+
+		os.flush();
+		os.close();
+		is.close();
+	}
+
+	/**
+	 * Close database connections
+	 */
+	public void closeDatabase() {
+		sqlite.close();
+	}
 }

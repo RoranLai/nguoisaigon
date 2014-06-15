@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.nguoisaigon.R;
+import com.nguoisaigon.db.SettingDB;
 import com.nguoisaigon.util.SystemUiHider;
 
 /**
@@ -31,6 +32,7 @@ public class MainActivity extends Activity {
         {
         	animation = (AnimationDrawable) welcomeIcon.getBackground();
             animation.start();
+            SettingDB settingDB = new SettingDB(this);
         }
         animation.stop();
         Intent intent = new Intent(this, HomeScreenActivity.class);
