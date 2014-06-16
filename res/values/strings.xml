@@ -11,6 +11,10 @@
     <string name="setting_parseappid">parseAppId</string>
     <string name="setting_settingid">settingId</string>
     
+    <!-- Welcome Screen -->
+    <string name="welcom_loading">Loading</string>
+    <string name="welcom_recheck">Kiểm tra lại</string>
+    
     <!-- Application News json -->
     <string name="news_createdate">createDate</string>
     <string name="news_newscontent">newsContent</string>

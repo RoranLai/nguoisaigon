@@ -1,77 +1,95 @@
 package com.nguoisaigon.util;
 
-import android.annotation.SuppressLint;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WebService 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class WebService extends AsyncTask <String, Void, JSONObject>
 {
-	static String SERVER_URL = "http://rest.itsleek.vn";
+	public interface WebServiceDelegate {
+	    public void taskCompletionResult(JSONObject result);
+	}
 	
-	/*
+	private String SERVER_URL = "http://rest.itsleek.vn";
+	private String url;
+	private WebServiceDelegate delegate;
+	
+	/**
+	 * Constructor with delegate
+	 */
+	public WebService(WebServiceDelegate vdelegate)
+	{
+		setDelegate(vdelegate);
+	}
+	
+	
+	/**
 	 * Get application setting from server 
 	 * @return JSONObject This object contains all keys/values of setting.
 	 * */
-	public static JSONObject getAppSetting()
+	public void setGettingAppSetting()
 	{
-		String url = SERVER_URL + "/api/Setting";
-		return getDataFromUrl(url);
+		url = SERVER_URL + "/api/Setting";
 	}
 	
-	/*
+	/**
 	 * Get all news of specific date from server 
 	 * @param date The selected date.
 	 * @return JSONObject This object contains all keys/values of setting.
 	 * */
-	@SuppressLint("SimpleDateFormat") public static JSONObject getNewsData(Date date)
+	@SuppressLint("SimpleDateFormat") public void setGettingNewsData(Date date)
 	{
 		//Convert date to string with format yyyy-MM-dd
 		SimpleDateFormat fmtOut = new SimpleDateFormat("yyyy-MM-dd");
 		String dateStr = fmtOut.format(date);
-		String url = SERVER_URL + "/api/news?selectedDate=" + dateStr;
+		url = SERVER_URL + "/api/news?selectedDate=" + dateStr;
 		
-		return getDataFromUrl(url);
 	}
 	
-	/*
+	/**
 	 * Get all events from server 
 	 * @return JSONObject This object contains all keys/values of event.
 	 * */
-	public static JSONObject getEventsData()
+	public void setGettingEventsData()
 	{
-		String url = SERVER_URL + "/api/events";
-		return getDataFromUrl(url);
+		url = SERVER_URL + "/api/events";
 	}
 	
-	/*
+	/**
 	 * Send a HTML request to server
 	 * @param url the HTML request string 
 	 * @return JSONObject This object contains all keys/values of response.
 	 * */
-	static JSONObject getDataFromUrl(String url)
+	private void getDataFromUrl()
 	{
+		Log.i("RoranLai", "WebService: getDataFromUrl " + url);
+		JSONObject responseString = null;
 		try {
-			HttpClient httpclient = new DefaultHttpClient();
+			DefaultHttpClient httpclient = new DefaultHttpClient();
 		    HttpResponse response;
 			response = httpclient.execute(new HttpGet(url));
 			StatusLine statusLine = response.getStatusLine();
+			
 		    if(statusLine.getStatusCode() == HttpStatus.SC_OK){
 		        ByteArrayOutputStream out = new ByteArrayOutputStream();
 		        response.getEntity().writeTo(out);
 		        out.close();
-		        JSONObject responseString = new JSONObject(out.toString());
-		        return responseString;
+		        Log.i("RoranLai", "WebService: response " + out.toString());
+		        responseString = new JSONObject(out.toString());
 		    } else{
 		        //Closes the connection.
 		        response.getEntity().getContent().close();
@@ -84,6 +102,26 @@ public class WebService
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		url = null;
+		delegate.taskCompletionResult(responseString);
+	}
+
+	@Override
+	protected JSONObject doInBackground(String... arg0) {
+		if(url != null)
+		{
+			getDataFromUrl();
+		}
 		return null;
+	}
+
+
+	public WebServiceDelegate getDelegate() {
+		return delegate;
+	}
+
+
+	public void setDelegate(WebServiceDelegate delegate) {
+		this.delegate = delegate;
 	}
 }
