@@ -2,6 +2,7 @@ package com.nguoisaigon.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 import com.nguoisaigon.entity.UserInfo;
 
@@ -73,5 +74,29 @@ public class UserDB extends DBHelper {
 		String selection = COLUMN_ID + " = ?";
 		String[] selectionArgs = { String.valueOf(1) };
 		return sqlite.delete(TABLE_NAME, selection, selectionArgs);
+	}
+
+	/**
+	 * Get user's information from database
+	 * 
+	 * @return
+	 */
+	public UserInfo getUser() {
+		String[] projection = { COLUMN_USER_ID, COLUMN_NAME, COLUMN_EMAIL,
+				COLUMN_CONTACT_PHONE, COLUMN_ADDRESS, COLUMN_ERNED_POINT };
+
+		Cursor c = sqlite.query(TABLE_NAME, projection, null, null, null, null,
+				null);
+		if (c.moveToFirst()) {
+			UserInfo user = new UserInfo();
+			user.setUserId(c.getString(0));
+			user.setName(c.getString(1));
+			user.setEmail(c.getString(2));
+			user.setContactPhone(c.getString(3));
+			user.setAddress(c.getString(4));
+			user.setErnedPoint(c.getDouble(5));
+			return user;
+		}
+		return null;
 	}
 }

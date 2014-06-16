@@ -1,9 +1,12 @@
 package com.nguoisaigon.db;
 
+import java.util.ArrayList;
+
 import com.nguoisaigon.entity.MusicInfo;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 public class MusicDB extends DBHelper {
 
@@ -39,4 +42,29 @@ public class MusicDB extends DBHelper {
 		values.put(COLUMN_TITLE, info.getTitle());
 		return sqlite.insert(TABLE_NAME, null, values);
 	}
+
+	/**
+	 * Get list of Musics
+	 * @return
+	 */
+	public ArrayList<MusicInfo> getMusics() {
+		ArrayList<MusicInfo> listMusics = new ArrayList<MusicInfo>();
+		String[] projection = { COLUMN_OWNER_INFO, COLUMN_PLAYLIST_ID,
+				COLUMN_PLAY_URL, COLUMN_SINGER, COLUMN_TITLE };
+
+		Cursor c = sqlite.query(TABLE_NAME, projection, null, null, null, null,
+				null);
+		while (c.moveToNext()) {
+			MusicInfo info = new MusicInfo();
+			info.setOwnerInfo(c.getString(0));
+			info.setPlayListId(c.getString(1));
+			info.setPlayUrl(c.getString(2));
+			info.setSinger(c.getString(3));
+			info.setTitle(c.getString(4));
+			listMusics.add(info);
+		}
+		
+		return listMusics;
+	}
+
 }
