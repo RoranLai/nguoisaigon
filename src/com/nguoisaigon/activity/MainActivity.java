@@ -54,7 +54,6 @@ public class MainActivity extends Activity implements WebServiceDelegate {
         {
         	animation = (AnimationDrawable) welcomeIcon.getBackground();
             animation.start();
-            animation.stop();
         }
         
         //Download data
