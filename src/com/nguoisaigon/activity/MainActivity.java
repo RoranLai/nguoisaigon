@@ -115,5 +115,4 @@ public class MainActivity extends Activity implements WebServiceDelegate {
         Intent intent = new Intent(this, HomeScreenActivity.class);
         startActivity(intent);
 	}
-
 }
