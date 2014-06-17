@@ -28,5 +28,13 @@
     <string name="events_eventid">eventId</string>
     <string name="events_ownerinfo">ownerInfo</string>
     <string name="events_title">title</string>
+    
+     <!-- Application News layout -->
+    <string name="page_default">1/2</string>
+    <string name="date_default">Tháng 03/2014</string>
+    <string name="create_date">Ngày đăng</string>
+    <string name="create_date_default">18/06/2014</string>
+    <string name="title_default">người sài gòn</string>
+    <string name="content_default">cà phê người sài gòn có khuyến mãi đặc biệt vào ngày thứ 7</string>
 
 </resources>
