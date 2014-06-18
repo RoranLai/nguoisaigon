@@ -1,5 +1,6 @@
 package com.nguoisaigon.activity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -89,9 +90,9 @@ public class MainActivity extends Activity implements WebServiceDelegate {
     }
 
 	@Override
-	public void taskCompletionResult(JSONObject result)
+	public void taskCompletionResult(JSONArray result)
 	{
-		JSONObject appSettingObject = result;
+		JSONArray appSettingObject = result;
         if(appSettingObject != null)
         {
         	//Insert database
@@ -100,9 +101,10 @@ public class MainActivity extends Activity implements WebServiceDelegate {
         	if(info != null)
         	{
         		try {
-					info.setAppLink(appSettingObject.getString(this.getString(R.string.setting_applink)));
-					info.setParseAppId(appSettingObject.getString(this.getString(R.string.setting_parseappid)));
-	        		info.setSettingId(appSettingObject.getString(this.getString(R.string.setting_settingid)));
+        			JSONObject object = (JSONObject)appSettingObject.get(0);
+					info.setAppLink(object.getString(this.getString(R.string.setting_applink)));
+					info.setParseAppId(object.getString(this.getString(R.string.setting_parseappid)));
+	        		info.setSettingId(object.getString(this.getString(R.string.setting_settingid)));
 	        		settingDB.insert(info);
 				} catch (JSONException e) {
 					e.printStackTrace();

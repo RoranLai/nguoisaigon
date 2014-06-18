@@ -11,6 +11,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +21,7 @@ import android.util.Log;
 
 public class WebService extends AsyncTask<String, Void, JSONObject> {
 	public interface WebServiceDelegate {
-		public void taskCompletionResult(JSONObject result);
+		public void taskCompletionResult(JSONArray result);
 	}
 
 	private String SERVER_URL = "http://rest.itsleek.vn";
@@ -76,31 +77,34 @@ public class WebService extends AsyncTask<String, Void, JSONObject> {
 	 * @return JSONObject This object contains all keys/values of response.
 	 * */
 	private void getDataFromUrl() {
-		Log.i("RoranLai", "WebService: getDataFromUrl " + url);
-		JSONObject responseString = null;
+		Log.i("WebService", "WebService: getDataFromUrl " + url);
+		JSONArray responseString = null;
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpResponse response;
 			response = httpclient.execute(new HttpGet(url));
 			StatusLine statusLine = response.getStatusLine();
-
-			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+			Log.i("WebService", "WebService: getDataFromUrl " + response.getStatusLine());
+			if (statusLine.getStatusCode() == HttpStatus.SC_ACCEPTED) {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				response.getEntity().writeTo(out);
 				out.close();
 				Log.i("RoranLai", "WebService: response " + out.toString());
-				responseString = new JSONObject(out.toString());
+				responseString = new JSONArray(out.toString());
 			} else {
 				// Closes the connection.
 				response.getEntity().getContent().close();
 				throw new IOException(statusLine.getReasonPhrase());
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			Log.e("WebService", e.getMessage());
+			responseString = null;
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e("WebService", e.getMessage());
+			responseString = null;
 		} catch (JSONException e) {
-			e.printStackTrace();
+			Log.e("WebService", e.getMessage());
+			responseString = null;
 		}
 		url = null;
 		delegate.taskCompletionResult(responseString);

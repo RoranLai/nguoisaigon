@@ -2,6 +2,7 @@ package com.nguoisaigon.activity;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,9 +11,11 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.nguoisaigon.R;
 import com.nguoisaigon.entity.NewsInfo;
+import com.nguoisaigon.util.WebService;
 import com.nguoisaigon.util.WebService.WebServiceDelegate;
 
 public class NewsActivity extends Activity implements WebServiceDelegate {
@@ -60,20 +63,33 @@ public class NewsActivity extends Activity implements WebServiceDelegate {
 //		tvContent.setText(news.getNewsContent());
 
 		// Download data
-		// WebService ws = new WebService(this);
-		// Calendar cal = Calendar.getInstance();
-		// cal.getTime();
-		// ws.setGettingNewsData(cal.getTime());
-		// ws.execute();
+		WebService ws = new WebService(this);
+		Calendar cal = Calendar.getInstance();
+		cal.getTime();
+		ws.setGettingNewsData(cal.getTime());
+		ws.execute();
+		
+		
 
 	}
 
 	@Override
-	public void taskCompletionResult(JSONObject result) {
+	public void taskCompletionResult(JSONArray result) {
+		Log.i("NewsActivity", (result == null)?"null":result.toString());
 		System.out.println(result.toString());
+//		for (int i = 0; i < result.length(); i++) {
+//			JSONObject newsJSON = result.getJSONObject(i)
+//			NewsInfo news = new NewsInfo();
+//			news.setCreateDate((Date) newsJSON.get("createDate"));
+//			news.setNewsContent(newsJSON.getString("newsContent"));
+//			news.setNewsId(newsJSON.getString("newsId"));
+//			news.setOwnerInfo(newsJSON.getString("ownerInfo"));
+//			news.setTitle(newsJSON.getString("title"));
+//			this.listNews.add(news);
+//		}
 	}
 
 	public void btnCloseClick() {
-		this.finish();
+		this.onBackPressed();
 	}
 }

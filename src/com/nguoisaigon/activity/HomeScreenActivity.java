@@ -61,4 +61,10 @@ public class HomeScreenActivity extends Activity
 	public void setDatahelper(DBHelper datahelper) {
 		this.datahelper = datahelper;
 	}
+	
+	@Override
+	public void onBackPressed() {
+		//Exit application
+		System.exit(1);
+	}
 }

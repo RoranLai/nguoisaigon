@@ -29,6 +29,16 @@
     <string name="events_ownerinfo">ownerInfo</string>
     <string name="events_title">title</string>
     
+    <!-- Application Contact view -->
+    <string name="contact_cafe">cafe</string>
+    <string name="contact_nguoisaigon">Người Sài Gòn</string>
+    <string name="contact_address1">71/4 Mạc Thị Bưởi Quận 1,</string>
+    <string name="contact_address2">Tp. Hồ Chí Minh</string>
+    <string name="contact_email">ownerInfo</string>
+    <string name="contact_phone1">title</string>
+    <string name="contact_phone2">title</string>
+    <string name="contact_facebook">title</string>
+    
      <!-- Application News layout -->
     <string name="page_default">1/2</string>
     <string name="date_default">Tháng 03/2014</string>
