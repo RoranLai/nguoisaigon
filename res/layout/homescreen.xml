@@ -1,106 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
-    
-    <ImageView
-        android:id="@+id/homebackground"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:src="@drawable/homebackground" 
-        android:contentDescription="@string/welcomebg"/>
-    
-    <ImageButton
-        android:id="@+id/btnhomestore"
-        android:layout_width="250dp"
-        android:layout_height="180dp"
-        android:layout_alignTop="@+id/homebackground"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="-5dp"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:onClick="btnstore_click"
-        android:scaleType="fitCenter"
-        android:src="@drawable/store_normal" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center" >
 
-    <ImageButton
-        android:id="@+id/btnhomehelp"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
-        android:layout_marginTop="55sp"
-        android:layout_marginLeft="3sp"
-        android:scaleType="fitCenter"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:src="@drawable/help_normal" 
-        android:onClick="btnhelp_click"/>
-    
-    <ImageButton
-        android:id="@+id/btnhomefacebook"
-        android:layout_width="55sp"
-        android:layout_height="55sp"
-        android:layout_marginLeft="3sp"
-        android:layout_marginTop="100sp"
-        android:scaleType="fitCenter"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:src="@drawable/fbboard_normal" 
-        android:onClick="btnfacebook_click"/>
+    <FrameLayout
+        android:layout_width="590sp"
+        android:layout_height="383sp"
+        android:layout_gravity="center" >
 
-    <ImageButton
-        android:id="@+id/btnhomemusic"
-        android:layout_width="100sp"
-        android:layout_height="100sp"
-        android:layout_alignTop="@+id/homebackground"
-        android:layout_marginLeft="288sp"
-        android:layout_marginTop="54sp"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:scaleType="fitCenter"
-        android:src="@drawable/musicplayer_normal" 
-        android:onClick="btnmusic_click"/>
-    
-    <ImageButton
-        android:id="@+id/btnhomeevents"
-        android:layout_width="60sp"
-        android:layout_height="90sp"
-        android:layout_alignTop="@+id/homebackground"
-        android:layout_marginLeft="398sp"
-        android:layout_marginTop="29sp"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:scaleType="fitCenter"
-        android:src="@drawable/calendar_normal" 
-        android:onClick="btnevents_click"/>
+        <ImageView
+            android:id="@+id/homebackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/homebackground" />
 
-    <ImageButton
-        android:id="@+id/btnhomephone"
-        android:layout_width="88sp"
-        android:layout_height="88sp"
-        android:layout_alignBottom="@+id/homebackground"
-        android:layout_alignLeft="@+id/homebackground"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="125dp"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:onClick="btnphone_click"
-        android:scaleType="fitCenter"
-        android:src="@drawable/phone_normal" />
+        <ImageButton
+            android:id="@+id/btnhomestore"
+            android:layout_width="280dp"
+            android:layout_height="202dp"
+            android:layout_marginLeft="25sp"
+            android:layout_marginTop="5sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnstore_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/store_normal" />
 
-    <ImageButton
-        android:id="@+id/btnhometv"
-        android:layout_width="165dp"
-        android:layout_height="240dp"
-        android:layout_alignRight="@+id/homebackground"
-        android:layout_alignBottom="@+id/homebackground"
-        android:layout_marginRight="-4dp"
-        android:background="@null"
-        android:contentDescription="@string/welcomebg"
-        android:onClick="btntv_click"
-        android:scaleType="fitCenter"
-        android:src="@drawable/tv_normal" />
+        <ImageButton
+            android:id="@+id/btnhomehelp"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
+            android:layout_marginLeft="3sp"
+            android:layout_marginTop="55sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnhelp_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/help_normal" />
 
-</RelativeLayout>
+        <ImageButton
+            android:id="@+id/btnhomefacebook"
+            android:layout_width="55sp"
+            android:layout_height="55sp"
+            android:layout_marginLeft="3sp"
+            android:layout_marginTop="100sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnfacebook_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/fbboard_normal" />
+
+        <ImageButton
+            android:id="@+id/btnhomephone"
+            android:layout_width="88sp"
+            android:layout_height="88sp"
+            android:layout_marginLeft="123sp"
+            android:layout_marginTop="273sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnphone_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/phone_normal" />
+
+        <ImageButton
+            android:id="@+id/btnhomemusic"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginLeft="288sp"
+            android:layout_marginTop="84sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnmusic_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/musicplayer_normal" />
+
+        <ImageButton
+            android:id="@+id/btnhomeevents"
+            android:layout_width="60sp"
+            android:layout_height="90sp"
+            android:layout_marginLeft="398sp"
+            android:layout_marginTop="59sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnevents_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/calendar_normal" />
+
+        <ImageButton
+            android:id="@+id/btnhometv"
+            android:layout_width="165dp"
+            android:layout_height="240dp"
+            android:layout_marginLeft="437sp"
+            android:layout_marginTop="100sp"
+            android:background="@null"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btntv_click"
+            android:scaleType="fitCenter"
+            android:src="@drawable/tv_normal" />
+    </FrameLayout>
+
+</LinearLayout>
