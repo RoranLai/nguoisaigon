@@ -3,147 +3,121 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center">
-    
-	<FrameLayout	    android:layout_width="590sp"
-	    android:layout_height="383sp" 
-	    android:layout_gravity="center">
-	    
-	    <ImageView
-	        android:id="@+id/newsbackground"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/newsbackground" />
-	    
-	    <ImageView
-	        android:id="@+id/btnClose"
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="553sp"
-	        android:layout_marginTop="33sp"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/closebutton" 
-	        android:onClick="btnCloseClick"/>
-	    
-	    <ImageView
-	        android:id="@+id/btnFaceBook"
-	        android:layout_width="37sp"
-	        android:layout_height="37sp"
-	        android:layout_marginLeft="481sp"
-	        android:layout_marginTop="55sp"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/facebookbutton" />
-	    
-	    <ImageView
-	        android:id="@+id/btnEmail"
-	        android:layout_width="37sp"
-	        android:layout_height="37sp"
-	        android:layout_marginLeft="481sp"
-	        android:layout_marginTop="88sp"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/emailbutton" />
-	    
-	    <ImageView
-	        android:id="@+id/btnPageNext"
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="440sp"
-	        android:layout_marginTop="62sp"
-	        android:scaleType="fitXY"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/nextbutton" />
-	    
-	    <TextView
-	        android:id="@+id/tvPage"
-	        android:layout_width="50sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="393sp"
-	        android:layout_marginTop="67sp"
-	        android:textColor="@android:color/black"
-	        android:textSize="8pt"
-	        android:text="@string/page_default"/>
-	    
-	    <ImageView
-	        android:id="@+id/btnPagePrevious"
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="348sp"
-	        android:layout_marginTop="62sp"
-	        android:scaleType="fitXY"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/prevbutton" />
-	    
-	    <ImageView
-	        android:id="@+id/btnDateNext"
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="300sp"
-	        android:layout_marginTop="62sp"
-	        android:scaleType="fitXY"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/nextbutton" />
-	    
-	    <TextView
-	        android:id="@+id/tvDate"
-	        android:layout_width="120sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="180sp"
-	        android:layout_marginTop="67sp"
-	        android:text="@string/date_default"
-	        android:textColor="@android:color/black"
-	        android:textSize="8pt" />
-	    
-	    <ImageView
-	        android:id="@+id/btnDatePrevious"
-	        android:layout_width="32sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="153sp"
-	        android:layout_marginTop="62sp"
-	        android:scaleType="fitXY"
-	        android:contentDescription="@string/welcomebg"
-	        android:src="@drawable/prevbutton" />
-	    
-	    <TextView
-	        android:id="@+id/TextView1"
-	        android:layout_width="100sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="153sp"
-	        android:layout_marginTop="100sp"
-	        android:textColor="@android:color/black"
-	        android:textSize="8pt"
-	        android:text="@string/create_date"/>
-	    
-	    <TextView
-	        android:id="@+id/tvCreateDate"
-	        android:layout_width="100sp"
-	        android:layout_height="32sp"
-	        android:layout_marginLeft="253sp"
-	        android:layout_marginTop="100sp"
-	        android:textColor="@android:color/black"
-	        android:textSize="8pt"
-	        android:text="@string/create_date_default"/>
-	    
-	    <TextView
-	        android:id="@+id/tvTitle"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginTop="130sp"
-	        android:layout_gravity="center_horizontal"
-	        android:textColor="@android:color/black"
-	        android:textSize="8pt"
-	        android:textStyle="bold"
-	        android:text="@string/title_default"/>
-	    
-	    <TextView
-	        android:id="@+id/tvContent"
-	        android:layout_width="450sp"
-	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="50sp"
-	        android:layout_marginTop="170sp"
-	        android:textColor="@android:color/black"
-	        android:textSize="6pt"
-	        android:text="@string/content_default"/>
-	    
-	</FrameLayout>
+    android:gravity="center" >
+
+    <FrameLayout
+        android:layout_width="590sp"
+        android:layout_height="383sp"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/newsbackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/newsbackground" />
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="553sp"
+            android:layout_marginTop="33sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnCloseClick"
+            android:src="@drawable/closebutton" />
+
+        <ImageView
+            android:id="@+id/btnFaceBook"
+            android:layout_width="37sp"
+            android:layout_height="37sp"
+            android:layout_marginLeft="481sp"
+            android:layout_marginTop="55sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/facebookbutton" 
+            android:onClick="btnFacebookClick"/>
+
+        <ImageView
+            android:id="@+id/btnEmail"
+            android:layout_width="37sp"
+            android:layout_height="37sp"
+            android:layout_marginLeft="481sp"
+            android:layout_marginTop="88sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/emailbutton" 
+            android:onClick="btnEmailClick"/>
+
+        <ImageView
+            android:id="@+id/btnPageNext"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="440sp"
+            android:layout_marginTop="62sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitXY"
+            android:src="@drawable/nextbutton" 
+            android:onClick="btnPageNextClick"/>
+
+        <TextView
+            android:id="@+id/tvPage"
+            android:layout_width="50sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="396sp"
+            android:layout_marginTop="67sp"
+            android:text="@string/page_default"
+            android:textColor="@android:color/black"
+            android:textSize="6pt" />
+
+        <ImageView
+            android:id="@+id/btnPagePrevious"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="348sp"
+            android:layout_marginTop="62sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitXY"
+            android:src="@drawable/prevbutton" 
+            android:onClick="btnPagePreviousClick"/>
+
+        <ImageView
+            android:id="@+id/btnDateNext"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="300sp"
+            android:layout_marginTop="62sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitXY"
+            android:src="@drawable/nextbutton" 
+            android:onClick="btnDateNextClick"/>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="120sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="185sp"
+            android:layout_marginTop="67sp"
+            android:text="@string/date_default"
+            android:textColor="@android:color/black"
+            android:textSize="6pt" />
+
+        <ImageView
+            android:id="@+id/btnDatePrevious"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="153sp"
+            android:layout_marginTop="62sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitXY"
+            android:src="@drawable/prevbutton" 
+            android:onClick="btnDatePreviousClick"/>
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/pager"
+            android:layout_width="450sp"
+            android:layout_height="match_parent" 
+            android:layout_marginTop="100sp"
+            android:layout_marginLeft="50sp"/>
+    </FrameLayout>
+
 </LinearLayout>
