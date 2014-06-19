@@ -3,6 +3,7 @@ package com.nguoisaigon.util;
 import java.text.SimpleDateFormat;
 
 import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -38,10 +39,21 @@ public class NewsPageFragment extends Fragment {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(
 				R.layout.fragment_news_page, container, false);
 		
+		TextView tvNgayDang = (TextView) rootView
+				.findViewById(R.id.TextView1);
 		TextView tvCreateDate = (TextView) rootView
 				.findViewById(R.id.tvCreateDate);
 		TextView tvTitle = (TextView) rootView.findViewById(R.id.tvTitle);
 		TextView tvContent = (TextView) rootView.findViewById(R.id.tvContent);
+		
+		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+				"fonts/wg_legacy_edition.ttf");
+		
+		tvNgayDang.setTypeface(tf);
+		tvCreateDate.setTypeface(tf);
+		tvTitle.setTypeface(tf);
+		tvContent.setTypeface(tf);
+		
 		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 		String createDate = formater.format(news.getCreateDate());
 		tvCreateDate.setText(createDate);

@@ -34,8 +34,8 @@
             android:layout_marginLeft="481sp"
             android:layout_marginTop="55sp"
             android:contentDescription="@string/welcomebg"
-            android:src="@drawable/facebookbutton" 
-            android:onClick="btnFacebookClick"/>
+            android:onClick="btnFacebookClick"
+            android:src="@drawable/facebookbutton" />
 
         <ImageView
             android:id="@+id/btnEmail"
@@ -44,8 +44,8 @@
             android:layout_marginLeft="481sp"
             android:layout_marginTop="88sp"
             android:contentDescription="@string/welcomebg"
-            android:src="@drawable/emailbutton" 
-            android:onClick="btnEmailClick"/>
+            android:onClick="btnEmailClick"
+            android:src="@drawable/emailbutton" />
 
         <ImageView
             android:id="@+id/btnPageNext"
@@ -54,19 +54,19 @@
             android:layout_marginLeft="440sp"
             android:layout_marginTop="62sp"
             android:contentDescription="@string/welcomebg"
+            android:onClick="btnPageNextClick"
             android:scaleType="fitXY"
-            android:src="@drawable/nextbutton" 
-            android:onClick="btnPageNextClick"/>
+            android:src="@drawable/nextbutton" />
 
         <TextView
             android:id="@+id/tvPage"
-            android:layout_width="50sp"
-            android:layout_height="32sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="396sp"
             android:layout_marginTop="67sp"
             android:text="@string/page_default"
             android:textColor="@android:color/black"
-            android:textSize="6pt" />
+            android:textSize="7pt" />
 
         <ImageView
             android:id="@+id/btnPagePrevious"
@@ -75,9 +75,9 @@
             android:layout_marginLeft="348sp"
             android:layout_marginTop="62sp"
             android:contentDescription="@string/welcomebg"
+            android:onClick="btnPagePreviousClick"
             android:scaleType="fitXY"
-            android:src="@drawable/prevbutton" 
-            android:onClick="btnPagePreviousClick"/>
+            android:src="@drawable/prevbutton" />
 
         <ImageView
             android:id="@+id/btnDateNext"
@@ -86,19 +86,29 @@
             android:layout_marginLeft="300sp"
             android:layout_marginTop="62sp"
             android:contentDescription="@string/welcomebg"
+            android:onClick="btnDateNextClick"
             android:scaleType="fitXY"
-            android:src="@drawable/nextbutton" 
-            android:onClick="btnDateNextClick"/>
+            android:src="@drawable/nextbutton" />
 
         <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="184sp"
+            android:layout_marginTop="67sp"
+            android:text="@string/month_label"
+            android:textColor="@android:color/black"
+            android:textSize="7pt" />
+        
+        <TextView
             android:id="@+id/tvDate"
-            android:layout_width="120sp"
-            android:layout_height="32sp"
-            android:layout_marginLeft="185sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="235sp"
             android:layout_marginTop="67sp"
             android:text="@string/date_default"
             android:textColor="@android:color/black"
-            android:textSize="6pt" />
+            android:textSize="7pt" />
 
         <ImageView
             android:id="@+id/btnDatePrevious"
@@ -107,17 +117,45 @@
             android:layout_marginLeft="153sp"
             android:layout_marginTop="62sp"
             android:contentDescription="@string/welcomebg"
+            android:onClick="btnDatePreviousClick"
             android:scaleType="fitXY"
-            android:src="@drawable/prevbutton" 
-            android:onClick="btnDatePreviousClick"/>
+            android:src="@drawable/prevbutton" />
 
         <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/pager"
             android:layout_width="450sp"
-            android:layout_height="match_parent" 
-            android:layout_marginTop="100sp"
-            android:layout_marginLeft="50sp"/>
+            android:layout_height="224sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginTop="100sp" />
+        
+        <TextView
+            android:id="@+id/noNews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_news"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:textSize="6pt"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tvNewsLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/news_loading"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="440dp"
+            android:layout_marginTop="300sp"/>
+
+        <ProgressBar
+            android:id="@+id/newsIndicator"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="15sp"
+            android:layout_height="15sp"
+            android:layout_marginLeft="420dp"
+            android:layout_marginTop="300sp"/>
     </FrameLayout>
 
 </LinearLayout>
