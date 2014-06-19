@@ -19,7 +19,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class WebService extends AsyncTask<String, Void, JSONArray> {
+public class WebService extends AsyncTask<String, Void, JSONObject> {
 	public interface WebServiceDelegate {
 		public void taskCompletionResult(JSONArray result);
 	}
@@ -76,27 +76,21 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	 *            the HTML request string
 	 * @return JSONObject This object contains all keys/values of response.
 	 * */
-	private JSONArray getDataFromUrl() {
+	private void getDataFromUrl() {
 		Log.i("WebService", "WebService: getDataFromUrl " + url);
-		JSONArray responseString = new JSONArray();
+		JSONArray responseString = null;
 		try {
 			DefaultHttpClient httpclient = new DefaultHttpClient();
 			HttpResponse response;
 			response = httpclient.execute(new HttpGet(url));
 			StatusLine statusLine = response.getStatusLine();
-			Log.i("WebService",
-					"WebService: getDataFromUrl " + response.getStatusLine());
+			Log.i("WebService", "WebService: getDataFromUrl " + response.getStatusLine());
 			if (statusLine.getStatusCode() == HttpStatus.SC_ACCEPTED) {
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
 				response.getEntity().writeTo(out);
 				out.close();
 				Log.i("RoranLai", "WebService: response " + out.toString());
-				if (out.toString().startsWith("{")) {
-					JSONObject object = new JSONObject(out.toString());
-					responseString.put(object);
-				} else {
-					responseString = new JSONArray(out.toString());
-				}
+				responseString = new JSONArray(out.toString());
 			} else {
 				// Closes the connection.
 				response.getEntity().getContent().close();
@@ -104,28 +98,24 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 			}
 		} catch (ClientProtocolException e) {
 			Log.e("WebService", e.getMessage());
+			responseString = null;
 		} catch (IOException e) {
 			Log.e("WebService", e.getMessage());
+			responseString = null;
 		} catch (JSONException e) {
 			Log.e("WebService", e.getMessage());
+			responseString = null;
 		}
 		url = null;
-		return responseString;
-
+		delegate.taskCompletionResult(responseString);
 	}
 
 	@Override
-	protected JSONArray doInBackground(String... arg0) {
+	protected JSONObject doInBackground(String... arg0) {
 		if (url != null) {
-			return getDataFromUrl();
+			getDataFromUrl();
 		}
 		return null;
-	}
-
-	@Override
-	protected void onPostExecute(JSONArray result) {
-		super.onPostExecute(result);
-		delegate.taskCompletionResult(result);
 	}
 
 	public WebServiceDelegate getDelegate() {
