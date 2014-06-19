@@ -20,6 +20,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nguoisaigon.R;
@@ -57,9 +59,15 @@ public class NewsActivity extends FragmentActivity implements
 		Typeface tf = Typeface.createFromAsset(getAssets(),
 				"fonts/wg_legacy_edition.ttf");
 		TextView tvPage = (TextView) findViewById(R.id.tvPage);
+		TextView tvMonth = (TextView) findViewById(R.id.tvMonth);
 		TextView tvDate = (TextView) findViewById(R.id.tvDate);
+		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
+		TextView tvNoNews = (TextView) findViewById(R.id.noNews);
 		tvPage.setTypeface(tf);
+		tvMonth.setTypeface(tf);
 		tvDate.setTypeface(tf);
+		tvLoading.setTypeface(tf);
+		tvNoNews.setTypeface(tf);
 		this.loadData();
 	}
 
@@ -104,16 +112,37 @@ public class NewsActivity extends FragmentActivity implements
 		TextView tvPage = (TextView) findViewById(R.id.tvPage);
 		String pageDisplay = "0/0";
 		if (this.listNews.size() > 0) {
-			pageDisplay = mPager.getCurrentItem() + "/"
+			pageDisplay = mPager.getCurrentItem() + 1 + "/"
 					+ mPagerAdapter.getCount();
 		}
 		tvPage.setText(pageDisplay);
+
+		ImageView btnPagePrevious = (ImageView) findViewById(R.id.btnPagePrevious);
+		ImageView btnPageNext = (ImageView) findViewById(R.id.btnPageNext);
+		Log.i("NewsActivity - image alpha", btnPagePrevious.getImageAlpha()
+				+ "");
+
+		if (mPagerAdapter.getCount() > 1) {
+			if (mPager.getCurrentItem() == 0) {
+				btnPagePrevious.setImageAlpha(70);
+				btnPageNext.setImageAlpha(1000);
+			} else if (mPager.getCurrentItem() == (mPagerAdapter.getCount() - 1)) {
+				btnPageNext.setImageAlpha(70);
+				btnPagePrevious.setImageAlpha(1000);
+			} else {
+				btnPagePrevious.setImageAlpha(1000);
+			}
+		} else {
+			btnPageNext.setImageAlpha(70);
+			btnPagePrevious.setImageAlpha(70);
+		}
+
 	}
 
 	public void updateData() {
-		
+
 		TextView tvDate = (TextView) findViewById(R.id.tvDate);
-		SimpleDateFormat formater = new SimpleDateFormat("'Tháng' MM/yyyy");
+		SimpleDateFormat formater = new SimpleDateFormat("MM/yyyy");
 		String dateDisplay = formater.format(currentDate.getTime());
 		tvDate.setText(dateDisplay);
 
@@ -124,6 +153,19 @@ public class NewsActivity extends FragmentActivity implements
 				fragments);
 		mPager.setAdapter(mPagerAdapter);
 		this.updatePageNumView();
+
+		TextView tvNoNews = (TextView) findViewById(R.id.noNews);
+		if (mPagerAdapter.getCount() < 1) {
+			tvNoNews.setVisibility(TextView.VISIBLE);
+		} else {
+			tvNoNews.setVisibility(TextView.GONE);
+		}
+
+		ProgressBar indicator = (ProgressBar) findViewById(R.id.newsIndicator);
+		indicator.setVisibility(ProgressBar.GONE);
+		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
+		tvLoading.setVisibility(TextView.GONE);
+
 	}
 
 	private List<Fragment> getFragments() {
@@ -151,23 +193,33 @@ public class NewsActivity extends FragmentActivity implements
 		int currentItem = mPager.getCurrentItem();
 		if (currentItem < mPager.getAdapter().getCount()) {
 			mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
+			this.updatePageNumView();
 		}
 	}
 
 	public void btnPagePreviousClick(View view) {
 		int currentItem = mPager.getCurrentItem();
-		if (currentItem < 2) {
+		if (currentItem > 0) {
 			mPager.setCurrentItem(mPager.getCurrentItem() - 1, true);
+			this.updatePageNumView();
 		}
 	}
 
 	public void btnDateNextClick(View view) {
 		this.currentDate.add(Calendar.MONTH, 1);
+		ProgressBar indicator = (ProgressBar) findViewById(R.id.newsIndicator);
+		indicator.setVisibility(ProgressBar.VISIBLE);
+		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
+		tvLoading.setVisibility(TextView.VISIBLE);
 		this.loadData();
 	}
 
 	public void btnDatePreviousClick(View view) {
 		this.currentDate.add(Calendar.MONTH, -1);
+		ProgressBar indicator = (ProgressBar) findViewById(R.id.newsIndicator);
+		indicator.setVisibility(ProgressBar.VISIBLE);
+		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
+		tvLoading.setVisibility(TextView.VISIBLE);
 		this.loadData();
 	}
 
