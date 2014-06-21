@@ -42,9 +42,9 @@ public class NewsPageFragment extends Fragment {
 		TextView tvNgayDang = (TextView) rootView
 				.findViewById(R.id.TextView1);
 		TextView tvCreateDate = (TextView) rootView
-				.findViewById(R.id.tvCreateDate);
-		TextView tvTitle = (TextView) rootView.findViewById(R.id.tvTitle);
-		TextView tvContent = (TextView) rootView.findViewById(R.id.tvContent);
+				.findViewById(R.id.tvNewsCreateDate);
+		TextView tvTitle = (TextView) rootView.findViewById(R.id.tvNewsTitle);
+		TextView tvContent = (TextView) rootView.findViewById(R.id.tvNewsContent);
 		
 		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
 				"fonts/wg_legacy_edition.ttf");

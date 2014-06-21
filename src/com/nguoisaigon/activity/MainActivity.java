@@ -120,7 +120,6 @@ public class MainActivity extends Activity implements WebServiceDelegate {
 	
 	@Override
 	public void onBackPressed() {
-		System.exit(0);
 	}
 	
 	/**

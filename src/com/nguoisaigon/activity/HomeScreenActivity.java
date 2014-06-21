@@ -1,21 +1,88 @@
 package com.nguoisaigon.activity;
 
-import com.nguoisaigon.R;
-import com.nguoisaigon.db.DBHelper;
-
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+=======
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+>>>>>>> FETCH_HEAD
 import android.view.View;
+import android.widget.ImageView;
+
+import com.nguoisaigon.R;
+import com.nguoisaigon.db.DBHelper;
+<<<<<<< HEAD
+import com.nguoisaigon.db.SettingDB;
+import com.nguoisaigon.entity.SettingInfo;
+=======
+>>>>>>> FETCH_HEAD
 
 public class HomeScreenActivity extends Activity
 {
 	private DBHelper datahelper;
+	
+	private ImageView storeHelp;
+	private ImageView eventHelp;
+	private ImageView newsHelp;
+	private ImageView musicHelp;
+	
+<<<<<<< HEAD
+	Handler handler = new Handler();
+	
+	Runnable hideHelp = new Runnable() {
+		
+		@Override
+		public void run() {
+			storeHelp.setVisibility(ImageView.GONE);
+			eventHelp.setVisibility(ImageView.GONE);
+			newsHelp.setVisibility(ImageView.GONE);
+			musicHelp.setVisibility(ImageView.GONE);
+		}
+	};
+=======
+>>>>>>> FETCH_HEAD
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
+<<<<<<< HEAD
+        storeHelp = (ImageView) findViewById(R.id.homeStoreHelp);
+		eventHelp = (ImageView) findViewById(R.id.homeCalendarHelp);
+		newsHelp = (ImageView) findViewById(R.id.homeNewsHelp);
+		musicHelp = (ImageView) findViewById(R.id.homeMusicHelp);
+		
+		this.showHelp();
+		
+		ImageView tvImage = (ImageView) findViewById(R.id.homeTVAnimation);
+		tvImage.setBackgroundResource(R.drawable.tvanimation);
+		AnimationDrawable tvAnimation = (AnimationDrawable) tvImage.getBackground();
+		tvAnimation.start();
+		
+		ImageView tvLight = (ImageView) findViewById(R.id.homeTVLight);
+		tvLight.setBackgroundResource(R.drawable.tvlightanimation);
+		AnimationDrawable tvLightAnimation = (AnimationDrawable) tvLight.getBackground();
+		tvLightAnimation.start();
+		
+		ImageView musicImage = (ImageView) findViewById(R.id.homeMusic);
+		musicImage.setBackgroundResource(R.drawable.musicanimation);
+		AnimationDrawable musicAnimation = (AnimationDrawable) musicImage.getBackground();
+		musicAnimation.start();
+		
+		ImageView phoneImage = (ImageView) findViewById(R.id.homePhone);
+		phoneImage.setBackgroundResource(R.drawable.phoneanimation);
+		AnimationDrawable phoneAnimation = (AnimationDrawable) phoneImage.getBackground();
+		phoneAnimation.start();
+		
+=======
+        
+
+>>>>>>> FETCH_HEAD
         //setDatahelper(new DBHelper(this));
 	}
 	
@@ -25,13 +92,64 @@ public class HomeScreenActivity extends Activity
 	}
 	
 	public void btnhelp_click(View view) {
-		//Intent intent = new Intent(this, .class);
-		//startActivity(intent);
+<<<<<<< HEAD
+		this.showHelp();
+=======
+        storeHelp = (ImageView) findViewById(R.id.homeStoreHelp);
+		eventHelp = (ImageView) findViewById(R.id.homeCalendarHelp);
+		newsHelp = (ImageView) findViewById(R.id.homeNewsHelp);
+		musicHelp = (ImageView) findViewById(R.id.homeMusicHelp);
+		
+		storeHelp.setVisibility(ImageView.VISIBLE);
+		eventHelp.setVisibility(ImageView.VISIBLE);
+		newsHelp.setVisibility(ImageView.VISIBLE);
+		musicHelp.setVisibility(ImageView.VISIBLE);
+//		Timer timer = new Timer();
+//		TimerTask task = new TimerTask() {
+//			
+//			@Override
+//			public void run() {
+//				storeHelp.setVisibility(ImageView.GONE);
+//				eventHelp.setVisibility(ImageView.GONE);
+//				newsHelp.setVisibility(ImageView.GONE);
+//				musicHelp.setVisibility(ImageView.GONE);
+//			}
+//		};
+//		
+//		timer.schedule(task, 0, 500);
+		new AsyncTask<Void, Void, Void>() {
+			@Override
+			protected Void doInBackground(final Void... params) {
+				try {
+					wait(500);
+					storeHelp.setVisibility(ImageView.GONE);
+					eventHelp.setVisibility(ImageView.GONE);
+					newsHelp.setVisibility(ImageView.GONE);
+					musicHelp.setVisibility(ImageView.GONE);
+				} catch (InterruptedException e) {
+					Log.i("Help Action", e.getMessage());
+				}
+				return null;
+			}
+		}.execute();
+>>>>>>> FETCH_HEAD
 	}
 	
 	public void btnfacebook_click(View view) {
-//		Intent intent = new Intent(this, StoreMainActivity.class);
-//		startActivity(intent);
+		SettingDB settingDB = new SettingDB(this);
+		SettingInfo info = settingDB.getSetting();
+		
+		Intent intent = new Intent(this, FacebookPlugin.class);
+		Bundle bundle = new Bundle();
+		bundle.putString("link", info.getAppLink());
+		bundle.putString("description", "Dialog description");
+		bundle.putString("caption", "Dialog Caption");
+		
+		intent.putExtras(bundle);
+		startActivity(intent);
+//		FacebookPlugin fbPlugin = new FacebookPlugin("Dialog description", info.getAppLink(), "Dialog Caption");
+//		fbPlugin.postToWall();
+//		fbPlugin.showDialog("Dialog description", info.getAppLink(), "Dialog Caption");
 	}
 	
 	public void btnphone_click(View view) {
@@ -65,6 +183,22 @@ public class HomeScreenActivity extends Activity
 	@Override
 	public void onBackPressed() {
 		//Exit application
-		System.exit(1);
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
+<<<<<<< HEAD
+	}
+	
+	void showHelp()
+	{
+		storeHelp.setVisibility(ImageView.VISIBLE);
+		eventHelp.setVisibility(ImageView.VISIBLE);
+		newsHelp.setVisibility(ImageView.VISIBLE);
+		musicHelp.setVisibility(ImageView.VISIBLE);
+		
+		handler.postDelayed(hideHelp, 5000);
+=======
+>>>>>>> FETCH_HEAD
 	}
 }

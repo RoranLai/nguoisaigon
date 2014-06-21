@@ -1,6 +1,5 @@
 package com.nguoisaigon.util;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +12,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -222,15 +223,13 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 			Log.i("WebService",
 					"WebService: getDataFromUrl " + response.getStatusLine());
 			if (statusLine.getStatusCode() == HttpStatus.SC_ACCEPTED) {
-				ByteArrayOutputStream out = new ByteArrayOutputStream();
-				response.getEntity().writeTo(out);
-				out.close();
-				Log.i("RoranLai", "WebService: response " + out.toString());
-				if (out.toString().startsWith("{")) {
-					JSONObject jsonObject = new JSONObject(out.toString());
+				String jsonText = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+				Log.i("RoranLai", "WebService: response " + jsonText);
+				if (jsonText.startsWith("{")) {
+					JSONObject jsonObject = new JSONObject(jsonText);
 					responseString.put(jsonObject);
 				} else {
-					responseString = new JSONArray(out.toString());
+					responseString = new JSONArray(jsonText);
 				}
 			} else {
 				// Closes the connection.
