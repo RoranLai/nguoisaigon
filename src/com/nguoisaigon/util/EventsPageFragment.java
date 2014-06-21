@@ -41,7 +41,7 @@ public class EventsPageFragment extends Fragment {
 		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
 				"fonts/wg_legacy_edition.ttf");
 		tvTitle.setTypeface(tf);
-		tvContent.setTypeface(tf);
+		//tvContent.setTypeface(tf);
 		
 		tvTitle.setText(event.getTitle());
 		tvContent.setText(event.getEventContent());
