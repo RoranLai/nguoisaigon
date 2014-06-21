@@ -76,7 +76,6 @@
             android:onClick="btnmusic_click"
             android:scaleType="fitCenter"
             android:src="@drawable/musicplayer_selector" />
-<<<<<<< HEAD
 
         <ImageButton
             android:id="@+id/btnhometv"
@@ -89,8 +88,6 @@
             android:onClick="btntv_click"
             android:scaleType="fitCenter"
             android:src="@drawable/tv_selector" />
-=======
->>>>>>> FETCH_HEAD
 
         <ImageButton
             android:id="@+id/btnhomeevents"
@@ -103,7 +100,6 @@
             android:onClick="btnevents_click"
             android:scaleType="fitCenter"
             android:src="@drawable/calendar_selector" />
-<<<<<<< HEAD
         <ImageView
             android:id="@+id/homeStoreHelp"
             android:layout_width="100sp"
@@ -113,7 +109,6 @@
             android:contentDescription="@string/welcomebg"
             android:src="@drawable/storeinfo"
             android:visibility="invisible" />
-
         <ImageView
             android:id="@+id/homeMusicHelp"
             android:layout_width="100sp"
@@ -169,71 +164,15 @@
             android:contentDescription="@string/welcomebg"
             android:src="@drawable/eventinfo" 
             android:visibility="invisible"/>
-         
-         <ImageView
+        <ImageView
             android:id="@+id/homeNewsHelp"
             android:layout_width="100sp"
             android:layout_height="50sp"
-            android:layout_marginLeft="500sp"
-=======
-
-        <ImageButton
-            android:id="@+id/btnhometv"
-            android:layout_width="165sp"
-            android:layout_height="240sp"
-            android:layout_marginLeft="437sp"
->>>>>>> FETCH_HEAD
-            android:layout_marginTop="100sp"
-            android:contentDescription="@string/welcomebg"
-<<<<<<< HEAD
-            android:src="@drawable/newsinfo" 
-            android:visibility="invisible"/>
-=======
-            android:onClick="btntv_click"
-            android:scaleType="fitCenter"
-            android:src="@drawable/tv_selector" />
-        
-        <ImageView
-            android:id="@+id/homeStoreHelp"
-            android:layout_width="100sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="200sp"
-            android:layout_marginTop="180sp"
-            android:contentDescription="@string/welcomebg"
-            android:src="@drawable/storeinfo" 
-            android:visibility="invisible"/>
-        
-        <ImageView
-            android:id="@+id/homeCalendarHelp"
-            android:layout_width="100sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="440sp"
-            android:layout_marginTop="70sp"
-            android:contentDescription="@string/welcomebg"
-            android:src="@drawable/eventinfo" 
-            android:visibility="invisible"/>
-        
-         <ImageView
-            android:id="@+id/homeMusicHelp"
-            android:layout_width="100sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="300sp"
-            android:layout_marginTop="50sp"
-            android:contentDescription="@string/welcomebg"
-            android:src="@drawable/musicinfo" 
-            android:visibility="invisible"/>
-         
-         <ImageView
-            android:id="@+id/homeNewsHelp"
-            android:layout_width="100sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="500sp"
-            android:layout_marginTop="100sp"
+            android:layout_marginLeft="490sp"
+            android:layout_marginTop="110sp"
             android:contentDescription="@string/welcomebg"
             android:src="@drawable/newsinfo" 
             android:visibility="invisible"/>
-        
->>>>>>> FETCH_HEAD
     </FrameLayout>
 
 </LinearLayout>
