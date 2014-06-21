@@ -6,7 +6,7 @@
     android:gravity="center" >
 
     <FrameLayout
-        android:layout_width="590sp"
+        android:layout_width="600sp"
         android:layout_height="383sp"
         android:layout_gravity="center" >
 

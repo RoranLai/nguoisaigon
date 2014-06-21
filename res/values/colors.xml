@@ -2,5 +2,6 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="welcome_loading_color">#ff880000</color>
+    <color name="events_currentdate_color">#804000</color>
 
 </resources>

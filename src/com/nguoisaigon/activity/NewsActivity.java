@@ -14,8 +14,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -26,6 +24,7 @@ import android.widget.TextView;
 
 import com.nguoisaigon.R;
 import com.nguoisaigon.entity.NewsInfo;
+import com.nguoisaigon.util.CustomPagerAdapter;
 import com.nguoisaigon.util.NewsPageFragment;
 import com.nguoisaigon.util.WebService;
 import com.nguoisaigon.util.WebService.WebServiceDelegate;
@@ -58,9 +57,9 @@ public class NewsActivity extends FragmentActivity implements
 		this.currentDate = Calendar.getInstance();
 		Typeface tf = Typeface.createFromAsset(getAssets(),
 				"fonts/wg_legacy_edition.ttf");
-		TextView tvPage = (TextView) findViewById(R.id.tvPage);
-		TextView tvMonth = (TextView) findViewById(R.id.tvMonth);
-		TextView tvDate = (TextView) findViewById(R.id.tvDate);
+		TextView tvPage = (TextView) findViewById(R.id.tvNewsPage);
+		TextView tvMonth = (TextView) findViewById(R.id.tvNewsMonth);
+		TextView tvDate = (TextView) findViewById(R.id.tvNewsDate);
 		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
 		TextView tvNoNews = (TextView) findViewById(R.id.noNews);
 		tvPage.setTypeface(tf);
@@ -109,28 +108,25 @@ public class NewsActivity extends FragmentActivity implements
 	}
 
 	public void updatePageNumView() {
-		TextView tvPage = (TextView) findViewById(R.id.tvPage);
-		String pageDisplay = "0/0";
+		TextView tvPage = (TextView) findViewById(R.id.tvNewsPage);
 		if (this.listNews.size() > 0) {
-			pageDisplay = mPager.getCurrentItem() + 1 + "/"
+			String pageDisplay = mPager.getCurrentItem() + 1 + "/"
 					+ mPagerAdapter.getCount();
+			tvPage.setText(pageDisplay);
 		}
-		tvPage.setText(pageDisplay);
 
-		ImageView btnPagePrevious = (ImageView) findViewById(R.id.btnPagePrevious);
-		ImageView btnPageNext = (ImageView) findViewById(R.id.btnPageNext);
-		Log.i("NewsActivity - image alpha", btnPagePrevious.getImageAlpha()
-				+ "");
+		ImageView btnPagePrevious = (ImageView) findViewById(R.id.btnNewsPagePrevious);
+		ImageView btnPageNext = (ImageView) findViewById(R.id.btnNewsPageNext);
 
 		if (mPagerAdapter.getCount() > 1) {
 			if (mPager.getCurrentItem() == 0) {
 				btnPagePrevious.setImageAlpha(70);
-				btnPageNext.setImageAlpha(1000);
+				btnPageNext.setImageAlpha(255);
 			} else if (mPager.getCurrentItem() == (mPagerAdapter.getCount() - 1)) {
 				btnPageNext.setImageAlpha(70);
-				btnPagePrevious.setImageAlpha(1000);
+				btnPagePrevious.setImageAlpha(255);
 			} else {
-				btnPagePrevious.setImageAlpha(1000);
+				btnPagePrevious.setImageAlpha(255);
 			}
 		} else {
 			btnPageNext.setImageAlpha(70);
@@ -141,15 +137,15 @@ public class NewsActivity extends FragmentActivity implements
 
 	public void updateData() {
 
-		TextView tvDate = (TextView) findViewById(R.id.tvDate);
+		TextView tvDate = (TextView) findViewById(R.id.tvNewsDate);
 		SimpleDateFormat formater = new SimpleDateFormat("MM/yyyy");
 		String dateDisplay = formater.format(currentDate.getTime());
 		tvDate.setText(dateDisplay);
 
 		List<Fragment> fragments = getFragments();
 		// Instantiate a ViewPager and a PagerAdapter.
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),
+		mPager = (ViewPager) findViewById(R.id.newsPager);
+		mPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager(),
 				fragments);
 		mPager.setAdapter(mPagerAdapter);
 		this.updatePageNumView();
@@ -177,18 +173,38 @@ public class NewsActivity extends FragmentActivity implements
 		return fList;
 	}
 
+	/**
+	 * Close News
+	 * 
+	 * @param view
+	 */
 	public void btnCloseClick(View view) {
 		this.finish();
 	}
 
+	/**
+	 * Share with Facebook
+	 * 
+	 * @param view
+	 */
 	public void btnFacebookClick(View view) {
 
 	}
 
+	/**
+	 * Share with Email
+	 * 
+	 * @param view
+	 */
 	public void btnEmailClick(View view) {
 
 	}
 
+	/**
+	 * Next News
+	 * 
+	 * @param view
+	 */
 	public void btnPageNextClick(View view) {
 		int currentItem = mPager.getCurrentItem();
 		if (currentItem < mPager.getAdapter().getCount()) {
@@ -197,6 +213,11 @@ public class NewsActivity extends FragmentActivity implements
 		}
 	}
 
+	/**
+	 * Previous News
+	 * 
+	 * @param view
+	 */
 	public void btnPagePreviousClick(View view) {
 		int currentItem = mPager.getCurrentItem();
 		if (currentItem > 0) {
@@ -205,6 +226,11 @@ public class NewsActivity extends FragmentActivity implements
 		}
 	}
 
+	/**
+	 * Next Day
+	 * 
+	 * @param view
+	 */
 	public void btnDateNextClick(View view) {
 		this.currentDate.add(Calendar.MONTH, 1);
 		ProgressBar indicator = (ProgressBar) findViewById(R.id.newsIndicator);
@@ -214,6 +240,11 @@ public class NewsActivity extends FragmentActivity implements
 		this.loadData();
 	}
 
+	/**
+	 * Previous Day
+	 * 
+	 * @param view
+	 */
 	public void btnDatePreviousClick(View view) {
 		this.currentDate.add(Calendar.MONTH, -1);
 		ProgressBar indicator = (ProgressBar) findViewById(R.id.newsIndicator);
@@ -221,28 +252,5 @@ public class NewsActivity extends FragmentActivity implements
 		TextView tvLoading = (TextView) findViewById(R.id.tvNewsLoading);
 		tvLoading.setVisibility(TextView.VISIBLE);
 		this.loadData();
-	}
-
-	/**
-	 * A simple pager adapter that represents 5 ScreenSlidePageFragment objects,
-	 * in sequence.
-	 */
-	private class NewsPagerAdapter extends FragmentStatePagerAdapter {
-		private List<Fragment> fragments;
-
-		public NewsPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-			super(fm);
-			this.fragments = fragments;
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return this.fragments.get(position);
-		}
-
-		@Override
-		public int getCount() {
-			return this.fragments.size();
-		}
 	}
 }

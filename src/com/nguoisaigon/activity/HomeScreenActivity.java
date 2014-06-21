@@ -65,6 +65,9 @@ public class HomeScreenActivity extends Activity
 	@Override
 	public void onBackPressed() {
 		//Exit application
-		System.exit(1);
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 }
