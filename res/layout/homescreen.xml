@@ -19,15 +19,15 @@
 
         <ImageButton
             android:id="@+id/btnhomestore"
-            android:layout_width="255dp"
-            android:layout_height="178dp"
+            android:layout_width="255sp"
+            android:layout_height="178sp"
             android:layout_marginLeft="28sp"
             android:layout_marginTop="25sp"
             android:background="@null"
             android:contentDescription="@string/welcomebg"
             android:onClick="btnstore_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/store_normal" />
+            android:src="@drawable/store_selector" />
 
         <ImageButton
             android:id="@+id/btnhomehelp"
@@ -39,7 +39,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="btnhelp_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/help_normal" />
+            android:src="@drawable/help_selector" />
 
         <ImageButton
             android:id="@+id/btnhomefacebook"
@@ -51,7 +51,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="btnfacebook_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/fbboard_normal" />
+            android:src="@drawable/fbboard_selector" />
 
         <ImageButton
             android:id="@+id/btnhomephone"
@@ -63,7 +63,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="btnphone_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/phone_normal" />
+            android:src="@drawable/phone_selector" />
 
         <ImageButton
             android:id="@+id/btnhomemusic"
@@ -75,7 +75,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="btnmusic_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/musicplayer_normal" />
+            android:src="@drawable/musicplayer_selector" />
 
         <ImageButton
             android:id="@+id/btnhomeevents"
@@ -87,19 +87,60 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="btnevents_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/calendar_normal" />
+            android:src="@drawable/calendar_selector" />
 
         <ImageButton
             android:id="@+id/btnhometv"
-            android:layout_width="165dp"
-            android:layout_height="240dp"
+            android:layout_width="165sp"
+            android:layout_height="240sp"
             android:layout_marginLeft="437sp"
             android:layout_marginTop="100sp"
             android:background="@null"
             android:contentDescription="@string/welcomebg"
             android:onClick="btntv_click"
             android:scaleType="fitCenter"
-            android:src="@drawable/tv_normal" />
+            android:src="@drawable/tv_selector" />
+        
+        <ImageView
+            android:id="@+id/homeStoreHelp"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="200sp"
+            android:layout_marginTop="180sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/storeinfo" 
+            android:visibility="invisible"/>
+        
+        <ImageView
+            android:id="@+id/homeCalendarHelp"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="440sp"
+            android:layout_marginTop="70sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/eventinfo" 
+            android:visibility="invisible"/>
+        
+         <ImageView
+            android:id="@+id/homeMusicHelp"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="300sp"
+            android:layout_marginTop="50sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/musicinfo" 
+            android:visibility="invisible"/>
+         
+         <ImageView
+            android:id="@+id/homeNewsHelp"
+            android:layout_width="100sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="500sp"
+            android:layout_marginTop="100sp"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/newsinfo" 
+            android:visibility="invisible"/>
+        
     </FrameLayout>
 
 </LinearLayout>

@@ -55,5 +55,8 @@
     <!-- Application Events layout -->
     <string name="no_event">Không có sự kiện trong ngày hôm nay</string>
     
+    <!-- Application Music layout -->
+    <string name="no_song">Không có bài hát nào trong playlist</string>
+    
 
 </resources>

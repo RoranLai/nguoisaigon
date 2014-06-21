@@ -1,21 +1,33 @@
 package com.nguoisaigon.activity;
 
-import com.nguoisaigon.R;
-import com.nguoisaigon.db.DBHelper;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.nguoisaigon.R;
+import com.nguoisaigon.db.DBHelper;
 
 public class HomeScreenActivity extends Activity
 {
 	private DBHelper datahelper;
+	
+	private ImageView storeHelp;
+	private ImageView eventHelp;
+	private ImageView newsHelp;
+	private ImageView musicHelp;
+	
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homescreen);
+        
+
         //setDatahelper(new DBHelper(this));
 	}
 	
@@ -25,8 +37,29 @@ public class HomeScreenActivity extends Activity
 	}
 	
 	public void btnhelp_click(View view) {
-		//Intent intent = new Intent(this, .class);
-		//startActivity(intent);
+        storeHelp = (ImageView) findViewById(R.id.homeStoreHelp);
+		eventHelp = (ImageView) findViewById(R.id.homeCalendarHelp);
+		newsHelp = (ImageView) findViewById(R.id.homeNewsHelp);
+		musicHelp = (ImageView) findViewById(R.id.homeMusicHelp);
+		
+		storeHelp.setVisibility(ImageView.VISIBLE);
+		eventHelp.setVisibility(ImageView.VISIBLE);
+		newsHelp.setVisibility(ImageView.VISIBLE);
+		musicHelp.setVisibility(ImageView.VISIBLE);
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+			
+			@Override
+			public void run() {
+				storeHelp.setVisibility(ImageView.GONE);
+				eventHelp.setVisibility(ImageView.GONE);
+				newsHelp.setVisibility(ImageView.GONE);
+				musicHelp.setVisibility(ImageView.GONE);
+			}
+		};
+		
+		timer.schedule(task, 0, 500);
+		
 	}
 	
 	public void btnfacebook_click(View view) {
