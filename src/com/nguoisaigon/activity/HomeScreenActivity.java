@@ -1,11 +1,10 @@
 package com.nguoisaigon.activity;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -46,20 +45,34 @@ public class HomeScreenActivity extends Activity
 		eventHelp.setVisibility(ImageView.VISIBLE);
 		newsHelp.setVisibility(ImageView.VISIBLE);
 		musicHelp.setVisibility(ImageView.VISIBLE);
-		Timer timer = new Timer();
-		TimerTask task = new TimerTask() {
-			
+//		Timer timer = new Timer();
+//		TimerTask task = new TimerTask() {
+//			
+//			@Override
+//			public void run() {
+//				storeHelp.setVisibility(ImageView.GONE);
+//				eventHelp.setVisibility(ImageView.GONE);
+//				newsHelp.setVisibility(ImageView.GONE);
+//				musicHelp.setVisibility(ImageView.GONE);
+//			}
+//		};
+//		
+//		timer.schedule(task, 0, 500);
+		new AsyncTask<Void, Void, Void>() {
 			@Override
-			public void run() {
-				storeHelp.setVisibility(ImageView.GONE);
-				eventHelp.setVisibility(ImageView.GONE);
-				newsHelp.setVisibility(ImageView.GONE);
-				musicHelp.setVisibility(ImageView.GONE);
+			protected Void doInBackground(final Void... params) {
+				try {
+					wait(500);
+					storeHelp.setVisibility(ImageView.GONE);
+					eventHelp.setVisibility(ImageView.GONE);
+					newsHelp.setVisibility(ImageView.GONE);
+					musicHelp.setVisibility(ImageView.GONE);
+				} catch (InterruptedException e) {
+					Log.i("Help Action", e.getMessage());
+				}
+				return null;
 			}
-		};
-		
-		timer.schedule(task, 0, 500);
-		
+		}.execute();
 	}
 	
 	public void btnfacebook_click(View view) {
