@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -115,5 +116,20 @@ public class MainActivity extends Activity implements WebServiceDelegate {
         //Call the home page
         Intent intent = new Intent(this, HomeScreenActivity.class);
         startActivity(intent);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		System.exit(0);
+	}
+	
+	/**
+	 * Link to Facebook. Open link in native browser
+	 * 
+	 */
+	void linkToFacebook()
+	{
+		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Cafedansaigon"));
+		startActivity(browserIntent);
 	}
 }
