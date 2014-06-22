@@ -77,17 +77,17 @@ public class HomeScreenActivity extends Activity
 	}
 	
 	public void btnfacebook_click(View view) {
-		SettingDB settingDB = new SettingDB(this);
-		SettingInfo info = settingDB.getSetting();
-		
-		Intent intent = new Intent(this, FacebookPlugin.class);
-		Bundle bundle = new Bundle();
-		bundle.putString("link", info.getAppLink());
-		bundle.putString("description", "Dialog description");
-		bundle.putString("caption", "Dialog Caption");
-		
-		intent.putExtras(bundle);
-		startActivity(intent);
+//		SettingDB settingDB = new SettingDB(this);
+//		SettingInfo info = settingDB.getSetting();
+//		
+//		Intent intent = new Intent(this, FacebookPlugin.class);
+//		Bundle bundle = new Bundle();
+//		bundle.putString("link", info.getAppLink());
+//		bundle.putString("description", "Dialog description");
+//		bundle.putString("caption", "Dialog Caption");
+//		
+//		intent.putExtras(bundle);
+//		startActivity(intent);
 //		FacebookPlugin fbPlugin = new FacebookPlugin("Dialog description", info.getAppLink(), "Dialog Caption");
 //		fbPlugin.postToWall();
 //		fbPlugin.showDialog("Dialog description", info.getAppLink(), "Dialog Caption");

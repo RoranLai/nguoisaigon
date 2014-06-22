@@ -1,13 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    <ImageView
-        android:id="@+id/newsbackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/store_background" 
-        android:contentDescription="@string/welcomebg"/>
-    
-</FrameLayout>
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center" >
+
+    <FrameLayout
+        android:layout_width="600sp"
+        android:layout_height="383sp"
+        android:layout_gravity="center" >
+
+        <ImageView
+            android:id="@+id/storebackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcomebg"
+            android:src="@drawable/store_background" />
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/storeDetailPager"
+            android:layout_width="598sp"
+            android:layout_height="262sp"
+            android:layout_marginTop="90sp" />
+
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/storePager"
+            android:layout_width="598sp"
+            android:layout_height="262sp"
+            android:layout_marginTop="90sp" />
+
+        <ImageView
+            android:id="@+id/btnStoreCart"
+            android:layout_width="110sp"
+            android:layout_height="70sp"
+            android:layout_marginLeft="482sp"
+            android:layout_marginTop="25sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnStoreCartClick"
+            android:scaleType="fitXY"
+            android:src="@drawable/storecart_selector" />
+
+        <ImageView
+            android:id="@+id/btnStoreClose"
+            android:layout_width="32sp"
+            android:layout_height="32sp"
+            android:layout_marginLeft="561sp"
+            android:layout_marginTop="29sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="btnCloseClick"
+            android:src="@drawable/closebutton" />
+
+        <ImageView
+            android:id="@+id/menuStoreFood"
+            android:layout_width="86sp"
+            android:layout_height="60sp"
+            android:layout_marginLeft="350sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreFoodClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_food_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreLifeStyle"
+            android:layout_width="80sp"
+            android:layout_height="58sp"
+            android:layout_marginLeft="410sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreLifeStyleClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_lifestyle_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreCosmeticWoman"
+            android:layout_width="97sp"
+            android:layout_height="80sp"
+            android:layout_marginLeft="265sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreCosmeticWomanClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_cosmetic_woman_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreCosmeticMan"
+            android:layout_width="100sp"
+            android:layout_height="80sp"
+            android:layout_marginLeft="216sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreCosmeticManClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_cosmetic_man_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreCosmetic"
+            android:layout_width="105sp"
+            android:layout_height="40sp"
+            android:layout_marginLeft="241sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_cosmetic" />
+
+        <ImageView
+            android:id="@+id/menuStoreFashionKid"
+            android:layout_width="87dp"
+            android:layout_height="80sp"
+            android:layout_marginLeft="141sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreFashionKidClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_fashion_kid_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreFashionWoman"
+            android:layout_width="70dp"
+            android:layout_height="75sp"
+            android:layout_marginLeft="100sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreFashionWomanClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_fashion_woman_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreFashionMan"
+            android:layout_width="83dp"
+            android:layout_height="80sp"
+            android:layout_marginLeft="42sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:onClick="menuStoreFashionManClick"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_fashion_man_selector" />
+
+        <ImageView
+            android:id="@+id/menuStoreFashion"
+            android:layout_width="150sp"
+            android:layout_height="35sp"
+            android:layout_marginLeft="62sp"
+            android:layout_marginTop="23sp"
+            android:contentDescription="@string/welcomebg"
+            android:scaleType="fitStart"
+            android:src="@drawable/storemenu_fashion" />
+    </FrameLayout>
+
+</LinearLayout>
