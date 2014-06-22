@@ -44,6 +44,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct1HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -79,6 +88,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct2HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -114,6 +132,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct3HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -149,6 +176,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct4HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
         </FrameLayout>
 
@@ -189,6 +225,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct5HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -224,6 +269,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct6HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -259,6 +313,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct7HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
 
             <FrameLayout
@@ -294,6 +357,15 @@
                     android:layout_marginTop="0sp"
                     android:contentDescription="@string/welcomebg"
                     android:src="@drawable/saleicon" />
+
+                <ImageView
+                    android:id="@+id/storestoreProduct8HotTag"
+                    android:layout_width="38sp"
+                    android:layout_height="38sp"
+                    android:layout_marginLeft="105sp"
+                    android:layout_marginTop="95sp"
+                    android:contentDescription="@string/welcomebg"
+                    android:src="@drawable/hottag" />
             </FrameLayout>
         </FrameLayout>
     </FrameLayout>

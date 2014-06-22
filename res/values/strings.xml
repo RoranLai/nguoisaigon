@@ -60,5 +60,12 @@
     <!-- Application Music layout -->
     <string name="no_song">Không có bài hát nào trong playlist</string>
     
+    <!-- Application Store Detail layout -->
+    <string name="product_name_default">"Product's name"</string>
+    <string name="product_description_default">"Product's description"</string>
+    <string name="product_size">Size:</string>
+    <string name="product_quantity">Đơn giá:</string>
+    <string name="product_quantity_default">0 đ</string>
+    
 
 </resources>

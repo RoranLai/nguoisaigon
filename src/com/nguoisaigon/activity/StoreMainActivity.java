@@ -52,6 +52,20 @@ public class StoreMainActivity extends FragmentActivity implements
 	public void btnStoreCartClick(View view) {
 
 	}
+	
+	public void btnStoreDetailBackClick(View view) {
+
+	}
+	
+	public void btnStoreDetailEmailClick(View view) {
+
+	}
+	public void btnStoreDetailFacebookClick(View view) {
+
+	}
+	public void btnAddToCartClick(View view) {
+
+	}
 
 	@Override
 	public void taskCompletionResult(JSONArray result) {

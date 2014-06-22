@@ -17,19 +17,72 @@
             android:contentDescription="@string/welcomebg"
             android:src="@drawable/store_background" />
 
-        <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/storeDetailPager"
+        <FrameLayout
+            android:id="@+id/storeMain"
             android:layout_width="598sp"
             android:layout_height="262sp"
-            android:layout_marginTop="90sp" />
+            android:layout_marginTop="90sp" >
 
-        <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/storePager"
+            <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/storePager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/storeDetail"
             android:layout_width="598sp"
             android:layout_height="262sp"
-            android:layout_marginTop="90sp" />
+            android:layout_marginTop="90sp" >
+
+            <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/storeDetailPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/btnAddToCart"
+                android:layout_width="130sp"
+                android:layout_height="35sp"
+                android:layout_marginLeft="230sp"
+                android:layout_marginTop="225sp"
+                android:contentDescription="@string/welcomebg"
+                android:onClick="btnAddToCartClick"
+                android:scaleType="fitStart"
+                android:src="@drawable/addcartbutton" />
+
+            <ImageView
+                android:id="@+id/btnStoreDetailFaceBook"
+                android:layout_width="37sp"
+                android:layout_height="37sp"
+                android:layout_marginLeft="510sp"
+                android:layout_marginTop="225sp"
+                android:contentDescription="@string/welcomebg"
+                android:onClick="btnStoreDetailFacebookClick"
+                android:src="@drawable/facebookbutton" />
+
+            <ImageView
+                android:id="@+id/btnStoreDetailEmail"
+                android:layout_width="37sp"
+                android:layout_height="37sp"
+                android:layout_marginLeft="555sp"
+                android:layout_marginTop="225sp"
+                android:contentDescription="@string/welcomebg"
+                android:onClick="btnStoreDetailEmailClick"
+                android:src="@drawable/emailbutton" />
+            
+            <ImageView
+                android:id="@+id/btnStoreDetailBack"
+                android:layout_width="42sp"
+                android:layout_height="35sp"
+                android:layout_marginLeft="3sp"
+                android:layout_marginTop="5sp"
+                android:contentDescription="@string/welcomebg"
+                android:onClick="btnStoreDetailBackClick"
+                android:src="@drawable/backbutton" />
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/btnStoreCart"
