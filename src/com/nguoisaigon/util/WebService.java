@@ -1,9 +1,11 @@
 package com.nguoisaigon.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -19,6 +21,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -100,6 +104,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	 * false.
 	 */
 	public Boolean isPostRequest = false;
+	private boolean isDwonloadImageRequest;
 
 	/**
 	 * Constructor with delegate
@@ -165,7 +170,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	/**
 	 * Send Transaction Details to server
 	 * 
-	 * @return JSONObject This object contains all keys/values of event.
+	 * @param info This object contains all keys/values of event.
 	 * */
 	public void setTransactionDetailRequest(TransactionDetailInfo info) {
 		// http://rest.itsleek.vn/api/TransactionDetail
@@ -178,11 +183,74 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 			Log.e("WebService", e.getMessage());
 		}
 	}
+	
+	/**
+	 * Download image from url
+	 * 
+	 * @param vurl link to image.
+	 * */
+	public void setDownloadingImageRequest(String vurl) {
+		url = vurl;
+		this.isDwonloadImageRequest = true;
+		this.isPostRequest = false;
+		Log.i("WebService", "setTransactionDetail" + url);
+	}
+	
+	private JSONArray downloadBitmap() {
+        // initilize the default HTTP client object
+		JSONArray responseString = new JSONArray();
+        final DefaultHttpClient client = new DefaultHttpClient();
+
+        //forming a HttoGet request 
+        final HttpGet getRequest = new HttpGet(url);
+        try {
+
+            HttpResponse response = client.execute(getRequest);
+
+            //check 200 OK for success
+            final int statusCode = response.getStatusLine().getStatusCode();
+
+            if (statusCode != HttpStatus.SC_OK) {
+                Log.w("ImageDownloader", "Error " + statusCode + 
+                        " while retrieving bitmap from " + url);
+                return null;
+
+            }
+
+            final HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream inputStream = null;
+                try {
+                    // getting contents from the stream 
+                    inputStream = entity.getContent();
+
+                    // decoding stream data back into image Bitmap that android understands
+                    final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    
+                    if (bitmap != null)
+                    	responseString.put(bitmap);
+                    return responseString;
+                } finally {
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
+                    entity.consumeContent();
+                }
+            }
+        } catch (Exception e) {
+            // You Could provide a more explicit error message for IOException
+            getRequest.abort();
+            Log.e("ImageDownloader", "Something went wrong while" +
+                    " retrieving bitmap from " + url + e.toString());
+        } 
+
+        return null;
+    }
 
 	/**
 	 * Send a HTML request to server (POST)
 	 */
-	private void postDataToServer() {
+	private JSONArray postDataToServer() {
 		Log.i("WebService", "WebService: postDataToServer " + url);
 
 		try {
@@ -207,6 +275,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 		} catch (IOException e) {
 			Log.e("WebService", e.getMessage());
 		}
+		return null;
 	}
 
 	/**
@@ -224,7 +293,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 					"WebService: getDataFromUrl " + response.getStatusLine());
 			if (statusLine.getStatusCode() == HttpStatus.SC_ACCEPTED) {
 				String jsonText = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
-				Log.i("RoranLai", "WebService: response " + jsonText);
+				Log.i("WebService", "WebService: response " + jsonText);
 				if (jsonText.startsWith("{")) {
 					JSONObject jsonObject = new JSONObject(jsonText);
 					responseString.put(jsonObject);
@@ -256,7 +325,12 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 		if (url != null) {
 			if (this.isPostRequest) {
 				postDataToServer();
-			} else {
+			} else if (this.isDwonloadImageRequest)
+			{
+				return downloadBitmap();
+			}
+			else
+			{
 				return getDataFromServer();
 			}
 		}

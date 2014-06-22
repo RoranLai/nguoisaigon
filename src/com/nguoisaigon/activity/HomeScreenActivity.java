@@ -2,19 +2,36 @@ package com.nguoisaigon.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nguoisaigon.R;
 import com.nguoisaigon.db.DBHelper;
 import com.nguoisaigon.db.SettingDB;
 import com.nguoisaigon.entity.SettingInfo;
+import com.nguoisaigon.util.Emailplugin;
 
 public class HomeScreenActivity extends Activity
 {
+	//ContactView
+	FrameLayout contacView;
+	TextView contactCafe;
+	TextView contactNguoiSaiGon;
+	TextView contactAddress1;
+	TextView contactAddress2;
+	TextView contactEmail;
+	TextView contactPhone1;
+	TextView contactPhone2;
+	TextView contactFacebook;
+	
+	//- End ContactView
 	private DBHelper datahelper;
 	
 	private ImageView storeHelp;
@@ -42,6 +59,18 @@ public class HomeScreenActivity extends Activity
 		eventHelp = (ImageView) findViewById(R.id.homeCalendarHelp);
 		newsHelp = (ImageView) findViewById(R.id.homeNewsHelp);
 		musicHelp = (ImageView) findViewById(R.id.homeMusicHelp);
+		
+		contacView = (FrameLayout) findViewById(R.id.homeContactView);
+		contactCafe = (TextView) findViewById(R.id.homeContactCafe);
+		contactNguoiSaiGon = (TextView) findViewById(R.id.homeContactNguoiSaiGon);
+		contactAddress1 = (TextView) findViewById(R.id.homeContactAddress1);
+		contactAddress2 = (TextView) findViewById(R.id.homeContactAddress2);
+		contactEmail = (TextView) findViewById(R.id.homeContactEmail);
+		contactPhone1 = (TextView) findViewById(R.id.homeContactphone1);
+		contactPhone2 = (TextView) findViewById(R.id.homeContactphone2);
+		contactFacebook = (TextView) findViewById(R.id.homeContactFacebook);
+		//Setup contact View
+		setupContactView();
 		
 		this.showHelp();
 		
@@ -88,14 +117,10 @@ public class HomeScreenActivity extends Activity
 		
 		intent.putExtras(bundle);
 		startActivity(intent);
-//		FacebookPlugin fbPlugin = new FacebookPlugin("Dialog description", info.getAppLink(), "Dialog Caption");
-//		fbPlugin.postToWall();
-//		fbPlugin.showDialog("Dialog description", info.getAppLink(), "Dialog Caption");
 	}
 	
 	public void btnphone_click(View view) {
-//		Intent intent = new Intent(this, StoreMainActivity.class);
-//		startActivity(intent);
+		contacView.setVisibility(View.VISIBLE);
 	}
 	
 	public void btnmusic_click(View view) {
@@ -138,5 +163,49 @@ public class HomeScreenActivity extends Activity
 		musicHelp.setVisibility(ImageView.VISIBLE);
 		
 		handler.postDelayed(hideHelp, 5000);
+	}
+	
+	void setupContactView ()
+	{
+		 //Setup font label
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/wg_legacy_edition.ttf");
+        contactCafe.setTypeface(tf);
+        contactNguoiSaiGon.setTypeface(tf);
+        contactAddress1.setTypeface(tf);
+        contactAddress2.setTypeface(tf);
+        contactEmail.setTypeface(tf);
+        contactPhone1.setTypeface(tf);
+        contactPhone2.setTypeface(tf);
+        contactFacebook.setTypeface(tf);
+	}
+	
+	public void phone1OnClick(View view)
+	{
+		String url = "tel:0932113103";
+	    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+	    startActivity(intent);
+	}
+	
+	public void phone2OnClick(View view)
+	{
+		String url = "tel:0932113183";
+	    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse(url));
+	    startActivity(intent);
+	}
+	
+	public void emailOnClick(View view)
+	{
+		Emailplugin.SendEmailFromHomeView(this);
+	}
+	
+	public void facebookOnClick(View view)
+	{
+		
+	}
+	
+	public void hideContactOnClick(View view)
+	{
+		contacView.setVisibility(View.INVISIBLE);
 	}
 }

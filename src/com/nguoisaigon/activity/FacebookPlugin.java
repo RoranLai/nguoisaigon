@@ -35,6 +35,7 @@ public class FacebookPlugin extends Activity {
 		description = desc;
 		link = appLink;
 		caption = cap;	
+		this.postToWall();
 	}
 	
 	public void postToWall() 
