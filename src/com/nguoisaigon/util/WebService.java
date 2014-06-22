@@ -1,8 +1,16 @@
 package com.nguoisaigon.util;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.http.HttpEntity;
@@ -19,6 +27,9 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.nguoisaigon.entity.MusicDataInfo;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -96,6 +107,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	private final String STR_MAIN_HOST_INFO = "rest.itsleek.vn";
 	private String url;
 	private WebServiceDelegate delegate;
+	private String musicId;
 
 	protected JSONObject params;
 
@@ -104,7 +116,8 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	 * false.
 	 */
 	public Boolean isPostRequest = false;
-	private boolean isDwonloadImageRequest;
+	private boolean isDwonloadImageRequest = false;
+	private boolean isDwonloadMusicRequest = false;
 
 	/**
 	 * Constructor with delegate
@@ -116,10 +129,18 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	/**
 	 * Get application setting from server
 	 * 
-	 * @return JSONObject This object contains all keys/values of setting.
 	 * */
 	public void setGettingAppSetting() {
 		url = SERVER_URL + "/api/Setting";
+		this.isPostRequest = false;
+	}
+
+	/**
+	 * Get music from server
+	 * 
+	 * */
+	public void setGettingMusic() {
+		url = SERVER_URL + "/api/playlist";
 		this.isPostRequest = false;
 	}
 
@@ -128,7 +149,6 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	 * 
 	 * @param date
 	 *            The selected date.
-	 * @return JSONObject This object contains all keys/values of setting.
 	 * */
 	@SuppressLint("SimpleDateFormat")
 	public void setGettingNewsData(Date date) {
@@ -170,7 +190,8 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	/**
 	 * Send Transaction Details to server
 	 * 
-	 * @param info This object contains all keys/values of event.
+	 * @param info
+	 *            This object contains all keys/values of event.
 	 * */
 	public void setTransactionDetailRequest(TransactionDetailInfo info) {
 		// http://rest.itsleek.vn/api/TransactionDetail
@@ -183,69 +204,157 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 			Log.e("WebService", e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Download image from url
 	 * 
-	 * @param vurl link to image.
+	 * @param vurl
+	 *            link to image.
 	 * */
 	public void setDownloadingImageRequest(String vurl) {
-		url = vurl;
+		url = SERVER_URL + vurl;
 		this.isDwonloadImageRequest = true;
 		this.isPostRequest = false;
 		Log.i("WebService", "setTransactionDetail" + url);
 	}
-	
+
+	/**
+	 * Download music from url
+	 * 
+	 * @param vurl
+	 *            link to image.
+	 * */
+	public void setDownloadingMusicRequest(String vurl, String Id) {
+		url = SERVER_URL + vurl;
+		musicId = Id;
+		this.isDwonloadMusicRequest = true;
+		this.isDwonloadImageRequest = false;
+		this.isPostRequest = false;
+		Log.i("WebService", "setTransactionDetail" + url);
+	}
+
 	private JSONArray downloadBitmap() {
-        // initilize the default HTTP client object
+		// initilize the default HTTP client object
 		JSONArray responseString = new JSONArray();
-        final DefaultHttpClient client = new DefaultHttpClient();
+		final DefaultHttpClient client = new DefaultHttpClient();
 
-        //forming a HttoGet request 
-        final HttpGet getRequest = new HttpGet(url);
-        try {
+		// forming a HttoGet request
+		final HttpGet getRequest = new HttpGet(url);
+		try {
 
-            HttpResponse response = client.execute(getRequest);
+			HttpResponse response = client.execute(getRequest);
 
-            //check 200 OK for success
-            final int statusCode = response.getStatusLine().getStatusCode();
+			// check 200 OK for success
+			final int statusCode = response.getStatusLine().getStatusCode();
 
-            if (statusCode != HttpStatus.SC_OK) {
-                Log.w("ImageDownloader", "Error " + statusCode + 
-                        " while retrieving bitmap from " + url);
-                return null;
+			if (statusCode != HttpStatus.SC_OK) {
+				Log.w("ImageDownloader", "Error " + statusCode
+						+ " while retrieving bitmap from " + url);
+				return null;
 
-            }
+			}
 
-            final HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                InputStream inputStream = null;
-                try {
-                    // getting contents from the stream 
-                    inputStream = entity.getContent();
+			final HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				InputStream inputStream = null;
+				try {
+					// getting contents from the stream
+					inputStream = entity.getContent();
 
-                    // decoding stream data back into image Bitmap that android understands
-                    final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                    
-                    if (bitmap != null)
-                    	responseString.put(bitmap);
-                    return responseString;
-                } finally {
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
-                    entity.consumeContent();
-                }
-            }
-        } catch (Exception e) {
-            // You Could provide a more explicit error message for IOException
-            getRequest.abort();
-            Log.e("ImageDownloader", "Something went wrong while" +
-                    " retrieving bitmap from " + url + e.toString());
-        } 
+					// decoding stream data back into image Bitmap that android
+					// understands
+					final Bitmap bitmap = BitmapFactory
+							.decodeStream(inputStream);
 
-        return null;
-    }
+					if (bitmap != null)
+						responseString.put(bitmap);
+					return responseString;
+				} finally {
+					if (inputStream != null) {
+						inputStream.close();
+					}
+					entity.consumeContent();
+				}
+			}
+		} catch (Exception e) {
+			// You Could provide a more explicit error message for IOException
+			getRequest.abort();
+			Log.e("ImageDownloader", "Something went wrong while"
+					+ " retrieving bitmap from " + url + e.toString());
+		}
+
+		return null;
+	}
+
+	private JSONArray downloadMusic() {
+		// initilize the default HTTP client object
+		JSONArray responseString = new JSONArray();
+		final DefaultHttpClient client = new DefaultHttpClient();
+		
+		// forming a HttoGet request
+		final HttpGet getRequest = new HttpGet(url);
+		Log.i("WebService", "songData 123 " + "-" + url);
+		try {
+
+			HttpResponse response = client.execute(getRequest);
+
+			// check 200 OK for success
+			final int statusCode = response.getStatusLine().getStatusCode();
+
+			if (statusCode != HttpStatus.SC_OK) {
+				Log.w("ImageDownloader", "Error " + statusCode
+						+ " while retrieving bitmap from " + url);
+				return null;
+
+			}
+
+			final HttpEntity entity = response.getEntity();
+			Log.i("WebService", "songData 123 " + "-" + entity);
+			if (entity != null) {
+				InputStream inputStream = null;
+				try {
+					// getting contents from the stream
+					inputStream = entity.getContent();
+					BufferedInputStream buffInStream = new BufferedInputStream(
+							inputStream);
+					ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+					BufferedOutputStream buffOutStream = new BufferedOutputStream(outStream);
+
+					byte[] buffer = new byte[1024000];
+
+					while (true) {
+						int r = buffInStream.read(buffer);
+						if (r < 0)
+						{
+							break;
+						}
+						buffOutStream.write(buffer, 0, r);
+					}
+
+					// Create data
+					MusicDataInfo info = new MusicDataInfo();
+					Log.i("WebService", "songData 123 " + "-" + outStream.toString());
+					info.setPlayListId(musicId);
+					info.setMusicData(outStream.toByteArray());
+					responseString.put(new Gson().toJson(info));
+
+					return responseString;
+				} finally {
+					if (inputStream != null) {
+						inputStream.close();
+					}
+					entity.consumeContent();
+				}
+			}
+		} catch (Exception e) {
+			// You Could provide a more explicit error message for IOException
+			getRequest.abort();
+			Log.e("ImageDownloader", "Something went wrong while"
+					+ " retrieving bitmap from " + url + e.toString());
+		}
+
+		return null;
+	}
 
 	/**
 	 * Send a HTML request to server (POST)
@@ -292,7 +401,8 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 			Log.i("WebService",
 					"WebService: getDataFromUrl " + response.getStatusLine());
 			if (statusLine.getStatusCode() == HttpStatus.SC_ACCEPTED) {
-				String jsonText = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
+				String jsonText = EntityUtils.toString(response.getEntity(),
+						HTTP.UTF_8);
 				Log.i("WebService", "WebService: response " + jsonText);
 				if (jsonText.startsWith("{")) {
 					JSONObject jsonObject = new JSONObject(jsonText);
@@ -325,12 +435,11 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 		if (url != null) {
 			if (this.isPostRequest) {
 				postDataToServer();
-			} else if (this.isDwonloadImageRequest)
-			{
+			} else if (this.isDwonloadImageRequest) {
 				return downloadBitmap();
-			}
-			else
-			{
+			} else if (this.isDwonloadMusicRequest) {
+				return downloadMusic();
+			} else {
 				return getDataFromServer();
 			}
 		}
@@ -340,6 +449,7 @@ public class WebService extends AsyncTask<String, Void, JSONArray> {
 	@Override
 	protected void onPostExecute(JSONArray result) {
 		super.onPostExecute(result);
+		Log.i("onPostExecute", "onPostExecute" + result);
 		delegate.taskCompletionResult(result);
 	}
 

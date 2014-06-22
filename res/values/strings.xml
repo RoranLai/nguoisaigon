@@ -2,7 +2,7 @@
 <resources>
 	
     <!-- Facebook Application key string -->
-    <string name="applicationId">312436546asdad</string>
+    <string name="applicationId">240698066116165</string>
     <string name="app_name">NguoiSaiGon</string>
     <string name="welcomebg">Welcome screen</string>
     

@@ -1,8 +1,6 @@
 
 bin/
 
-*.xml
-
 gen/com/nguoisaigon/R.java
 
 bin/resources.ap_
