@@ -74,7 +74,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -125,7 +124,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -176,7 +174,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -232,7 +229,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -283,7 +279,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -334,7 +329,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 
@@ -385,7 +379,6 @@
                     android:layout_height="125sp"
                     android:layout_marginLeft="20sp"
                     android:layout_marginTop="12sp"
-                    android:onClick="storeProductClick"
                     android:scaleType="fitXY"
                     android:src="@drawable/productlistframe" />
 

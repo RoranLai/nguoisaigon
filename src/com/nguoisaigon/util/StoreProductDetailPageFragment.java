@@ -80,6 +80,13 @@ public class StoreProductDetailPageFragment extends Fragment {
 		sizeL.setImageAlpha(70);
 		sizeXL.setImageAlpha(70);
 		
+		sizeXXS.setContentDescription(product.getSizeQtyList().get(0).getSizeType().toString());
+		sizeXS.setContentDescription(product.getSizeQtyList().get(1).getSizeType().toString());
+		sizeS.setContentDescription(product.getSizeQtyList().get(2).getSizeType().toString());
+		sizeM.setContentDescription(product.getSizeQtyList().get(3).getSizeType().toString());
+		sizeL.setContentDescription(product.getSizeQtyList().get(4).getSizeType().toString());
+		sizeXL.setContentDescription(product.getSizeQtyList().get(5).getSizeType().toString());
+		
 		if (product.getIsHot() < 1) {
 			hotTag.setVisibility(ImageView.GONE);
 		}
