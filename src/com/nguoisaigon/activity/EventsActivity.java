@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,7 +67,7 @@ public class EventsActivity extends FragmentActivity implements
 		String currentDate = formater.format(Calendar.getInstance().getTime());
 		tvCurrentDate.setText(currentDate);
 		this.loadData();
-
+		this.setEventsPageChageLisener();
 	}
 
 	@Override
@@ -123,7 +124,6 @@ public class EventsActivity extends FragmentActivity implements
 			btnPageNext.setImageAlpha(70);
 			btnPagePrevious.setImageAlpha(70);
 		}
-
 	}
 
 	public void updateData() {
@@ -210,5 +210,51 @@ public class EventsActivity extends FragmentActivity implements
 			mPager.setCurrentItem(mPager.getCurrentItem() - 1, true);
 			this.updatePageNumView();
 		}
+	}
+
+	void setEventsPageChageLisener() {
+		ViewPager pager = (ViewPager) findViewById(R.id.newsPager);
+		pager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			@Override
+			public void onPageSelected(int arg0) {
+
+			}
+
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				Log.i("EventsActivity - onPageScrollStateChanged", "Start");
+				TextView tvPage = (TextView) findViewById(R.id.tvEventsPage);
+				if (listEvents.size() > 0) {
+					String pageDisplay = mPager.getCurrentItem() + 1 + "/"
+							+ mPagerAdapter.getCount();
+					tvPage.setText(pageDisplay);
+				}
+
+				ImageView btnPagePrevious = (ImageView) findViewById(R.id.btnEventsPagePrevious);
+				ImageView btnPageNext = (ImageView) findViewById(R.id.btnEventsPageNext);
+
+				if (mPagerAdapter.getCount() > 1) {
+					if (mPager.getCurrentItem() == 0) {
+						btnPagePrevious.setImageAlpha(70);
+						btnPageNext.setImageAlpha(255);
+					} else if (mPager.getCurrentItem() == (mPagerAdapter
+							.getCount() - 1)) {
+						btnPageNext.setImageAlpha(70);
+						btnPagePrevious.setImageAlpha(255);
+					} else {
+						btnPagePrevious.setImageAlpha(255);
+					}
+				} else {
+					btnPageNext.setImageAlpha(70);
+					btnPagePrevious.setImageAlpha(70);
+				}
+			}
+		});
 	}
 }
