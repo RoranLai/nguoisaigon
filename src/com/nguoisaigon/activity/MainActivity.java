@@ -186,14 +186,14 @@ public class MainActivity extends Activity implements WebServiceDelegate {
 			}
 		}
 		Log.i("MainActivity", "numofsong 5362536" + numOfSongs);
-		if (numOfSongs == 0 && this.isAppSettingDownloaded
-				&& this.isMusicDownloaded) {
+//		if (numOfSongs == 0 && this.isAppSettingDownloaded
+//				&& this.isMusicDownloaded) {
 			Log.i("MainActivity", "numofsong 666666666666" + numOfSongs);
 			// Call the home page
 			indicator.setVisibility(View.GONE);
 			Intent intent = new Intent(this, HomeScreenActivity.class);
 			startActivity(intent);
-		}
+//		}
 	}
 
 	@Override
