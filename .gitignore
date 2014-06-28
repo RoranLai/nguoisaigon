@@ -22,3 +22,5 @@ bin/classes/com/nguoisaigon/R$drawable.class
 bin/classes.dex
 
 bin/AndroidManifest.xml
+
+gen/com/facebook/android/R.java
