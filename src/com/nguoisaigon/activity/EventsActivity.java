@@ -1,8 +1,6 @@
 package com.nguoisaigon.activity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -53,19 +51,14 @@ public class EventsActivity extends FragmentActivity implements
 
 		Typeface tf = Typeface.createFromAsset(getAssets(),
 				"fonts/wg_legacy_edition.ttf");
-		TextView tvCurrentDate = (TextView) findViewById(R.id.tvEventsCurrentDate);
 		TextView tvPage = (TextView) findViewById(R.id.tvEventsPage);
 		TextView tvLoading = (TextView) findViewById(R.id.tvEventsLoading);
 		TextView tvNoEvent = (TextView) findViewById(R.id.noEvent);
 
-		tvCurrentDate.setTypeface(tf);
 		tvPage.setTypeface(tf);
 		tvLoading.setTypeface(tf);
 		tvNoEvent.setTypeface(tf);
 
-		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
-		String currentDate = formater.format(Calendar.getInstance().getTime());
-		tvCurrentDate.setText(currentDate);
 		this.loadData();
 		this.setEventsPageChageLisener();
 	}

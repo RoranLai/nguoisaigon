@@ -78,6 +78,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizexxs_normal" />
 
         <ImageView
@@ -89,6 +90,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizexs_normal" />
 
         <ImageView
@@ -100,6 +102,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizes_normal" />
 
         <ImageView
@@ -111,6 +114,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizem_normal" />
 
         <ImageView
@@ -122,6 +126,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizel_normal" />
 
         <ImageView
@@ -133,6 +138,7 @@
             android:contentDescription="@string/welcomebg"
             android:onClick="storeDetailProductSizeClick"
             android:scaleType="fitEnd"
+            android:focusable="false"
             android:src="@drawable/productsizexl_normal" />
 
         <TextView

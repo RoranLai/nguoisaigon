@@ -60,23 +60,13 @@
             android:scaleType="fitXY"
             android:src="@drawable/prevbutton" />
 
-        <TextView
-            android:id="@+id/tvEventsCurrentDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="230sp"
-            android:layout_marginTop="77sp"
-            android:text="@string/date_full_default"
-            android:textColor="@color/events_currentdate_color"
-            android:textSize="7.5pt" />
-
         <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/eventsPager"
-            android:layout_width="365sp"
-            android:layout_height="127sp"
-            android:layout_marginLeft="125sp"
-            android:layout_marginTop="100sp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0sp"
+            android:layout_marginTop="0sp" />
 
         <ImageView
             android:id="@+id/btnEventsFaceBook"

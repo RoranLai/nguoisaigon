@@ -1,9 +1,9 @@
 package com.nguoisaigon.db;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
