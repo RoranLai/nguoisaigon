@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nguoisaigon.R;
 import com.nguoisaigon.entity.EventsInfo;
 import com.nguoisaigon.util.CustomPagerAdapter;
@@ -54,6 +55,7 @@ public class EventsActivity extends FragmentActivity implements
 		TextView tvPage = (TextView) findViewById(R.id.tvEventsPage);
 		TextView tvLoading = (TextView) findViewById(R.id.tvEventsLoading);
 		TextView tvNoEvent = (TextView) findViewById(R.id.noEvent);
+		this.mPager = (ViewPager) findViewById(R.id.eventsPager);
 
 		tvPage.setTypeface(tf);
 		tvLoading.setTypeface(tf);
@@ -70,10 +72,10 @@ public class EventsActivity extends FragmentActivity implements
 			try {
 				for (int i = 0; i < result.length(); i++) {
 					JSONObject eventJSON = result.getJSONObject(i);
-					EventsInfo event = new EventsInfo();
-					event.setEventId(eventJSON.getString("eventId"));
-					event.setEventContent(eventJSON.getString("eventContent"));
-					event.setTitle(eventJSON.getString("title"));
+					EventsInfo event = new Gson().fromJson(eventJSON.toString(), EventsInfo.class);
+//					event.setEventId(eventJSON.getString("eventId"));
+//					event.setEventContent(eventJSON.getString("eventContent"));
+//					event.setTitle(eventJSON.getString("title"));
 					this.listEvents.add(event);
 				}
 			} catch (Exception e) {
@@ -123,9 +125,9 @@ public class EventsActivity extends FragmentActivity implements
 
 		List<Fragment> fragments = getFragments();
 		// Instantiate a ViewPager and a PagerAdapter.
-		mPager = (ViewPager) findViewById(R.id.eventsPager);
 		mPagerAdapter = new CustomPagerAdapter(getSupportFragmentManager(),
 				fragments);
+		this.mPager = (ViewPager) findViewById(R.id.eventsPager);
 		mPager.setAdapter(mPagerAdapter);
 		this.updatePageNumView();
 
@@ -206,8 +208,7 @@ public class EventsActivity extends FragmentActivity implements
 	}
 
 	void setEventsPageChageLisener() {
-		ViewPager pager = (ViewPager) findViewById(R.id.newsPager);
-		pager.setOnPageChangeListener(new OnPageChangeListener() {
+		this.mPager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageSelected(int arg0) {

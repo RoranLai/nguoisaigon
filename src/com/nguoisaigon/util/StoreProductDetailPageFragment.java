@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,6 +72,14 @@ public class StoreProductDetailPageFragment extends Fragment {
 				.findViewById(R.id.tvStoreDetailProductUnitPriceText);
 		ImageView salseIcon = (ImageView) rootView
 				.findViewById(R.id.storeDetailProductSaleIcon);
+		TextView quantityText = (TextView) rootView
+				.findViewById(R.id.tvStoreDetailProductQuantityText);
+		TextView quantity = (TextView) rootView
+				.findViewById(R.id.tvStoreDetailProductQuantity);
+		FrameLayout sizeLayout = (FrameLayout) rootView
+				.findViewById(R.id.storeDetailProductSizeLayout);
+		FrameLayout quantityLayout = (FrameLayout) rootView
+				.findViewById(R.id.storeDetailProductQuantityLayout);
 
 		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
 				"fonts/wg_legacy_edition.ttf");
@@ -80,7 +89,9 @@ public class StoreProductDetailPageFragment extends Fragment {
 		unitPrice.setTypeface(tf);
 		unitPriceText.setTypeface(tf);
 		sizeText.setTypeface(tf);
-
+		quantityText.setTypeface(tf);
+		quantity.setTypeface(tf);
+		
 		name.setText(product.getName());
 		description.setText(product.getDescription());
 		unitPrice.setText(product.getUnitPrice() + " đ");
@@ -88,51 +99,52 @@ public class StoreProductDetailPageFragment extends Fragment {
 		sizeXXS.setImageAlpha(70);
 		sizeXS.setImageAlpha(70);
 		sizeS.setImageAlpha(70);
-		sizeM.setImageAlpha(255);
+		sizeM.setImageAlpha(70);
 		sizeL.setImageAlpha(70);
 		sizeXL.setImageAlpha(70);
 
-		if (product.getSizeQtyList().size() < 0) {
+		if (product.getSizeQtyList().size() > 0) {
+			sizeLayout.setVisibility(FrameLayout.VISIBLE);
+			quantityLayout.setVisibility(FrameLayout.GONE);
 			for (int i = 0; i < product.getSizeQtyList().size(); i++) {
-
 				switch (i) {
 				case 0:
-					sizeXXS.setFocusable(true);
+					sizeXXS.setClickable(true);
 					sizeXXS.setImageAlpha(255);
 					sizeXXS.setContentDescription(product.getSizeQtyList()
 							.get(i).getSizeType().toString());
 					break;
 
 				case 1:
-					sizeXS.setFocusable(true);
+					sizeXS.setClickable(true);
 					sizeXS.setImageAlpha(255);
 					sizeXS.setContentDescription(product.getSizeQtyList()
 							.get(i).getSizeType().toString());
 					break;
 
 				case 2:
-					sizeS.setFocusable(true);
+					sizeS.setClickable(true);
 					sizeS.setImageAlpha(255);
 					sizeS.setContentDescription(product.getSizeQtyList().get(i)
 							.getSizeType().toString());
 					break;
 
 				case 3:
-					sizeM.setFocusable(true);
+					sizeM.setClickable(true);
 					sizeM.setImageAlpha(255);
 					sizeM.setContentDescription(product.getSizeQtyList().get(i)
 							.getSizeType().toString());
 					break;
 
 				case 4:
-					sizeL.setFocusable(true);
+					sizeL.setClickable(true);
 					sizeL.setImageAlpha(255);
 					sizeL.setContentDescription(product.getSizeQtyList().get(i)
 							.getSizeType().toString());
 					break;
 
 				case 5:
-					sizeXL.setFocusable(true);
+					sizeXL.setClickable(true);
 					sizeXL.setImageAlpha(255);
 					sizeXL.setContentDescription(product.getSizeQtyList()
 							.get(i).getSizeType().toString());
@@ -142,6 +154,9 @@ public class StoreProductDetailPageFragment extends Fragment {
 					break;
 				}
 			}
+		} else {
+			sizeLayout.setVisibility(FrameLayout.GONE);
+			quantityLayout.setVisibility(FrameLayout.VISIBLE);
 		}
 
 		if (product.getIsHot() < 1) {

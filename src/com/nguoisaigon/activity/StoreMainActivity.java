@@ -54,7 +54,7 @@ public class StoreMainActivity extends FragmentActivity implements
 	 * The pager adapter, which provides the pages to the view pager widget.
 	 */
 	private PagerAdapter mPagerAdapter;
-	
+
 	private ListView storeMainListViewProduct;
 	private StoreProductPageAdapter storeMainProductAdapter;
 
@@ -84,6 +84,7 @@ public class StoreMainActivity extends FragmentActivity implements
 		this.hsProduct = new HashMap<String, Integer>();
 		this.listProduct = new ArrayList<ProductInfo>();
 		this.transactionDetailInfo = new TransactionDetailInfo();
+		this.storeMainListViewProduct = (ListView) findViewById(R.id.storeMainListProduct);
 		this.loadData(productCategory.cat_fashion_man,
 				productSearchType.search_for_client);
 
@@ -98,6 +99,7 @@ public class StoreMainActivity extends FragmentActivity implements
 		this.hsProduct.clear();
 		this.transactionDetailInfo.clear();
 		this.transactionDetailInfo.setCategoryId(category.getIntValue());
+		this.storeMainProductAdapter = null;
 		// Download data
 		WebService ws = new WebService(this);
 		ws.setGettingProducts(category, searchType);
@@ -131,8 +133,8 @@ public class StoreMainActivity extends FragmentActivity implements
 	private void updateData() {
 		Log.i("StoreMainActivity - updateData", "Start");
 		ArrayList<StoreProductPageInfo> fragments = getProductFragments();
-		this.storeMainProductAdapter = new StoreProductPageAdapter(this, fragments);
-		this.storeMainListViewProduct = (ListView) findViewById(R.id.storeMainListProduct);
+		this.storeMainProductAdapter = new StoreProductPageAdapter(this,
+				fragments);
 		this.storeMainListViewProduct.setAdapter(storeMainProductAdapter);
 		this.storeMainListViewProduct.setDivider(null);
 		Log.i("StoreMainActivity - updateData",
@@ -267,42 +269,26 @@ public class StoreMainActivity extends FragmentActivity implements
 	}
 
 	public void storeProduct1Click(View view) {
+		Log.i("StoreMainActivity - storeProduct1Click", "start");
 		TextView productId = (TextView) view.findViewById(R.id.tvProduct1Id);
 		storeProductClick(productId);
 	}
 
 	public void storeProduct2Click(View view) {
+		Log.i("StoreMainActivity - storeProduct2Click", "start");
 		TextView productId = (TextView) view.findViewById(R.id.tvProduct2Id);
 		storeProductClick(productId);
 	}
 
 	public void storeProduct3Click(View view) {
+		Log.i("StoreMainActivity - storeProduct3Click", "start");
 		TextView productId = (TextView) view.findViewById(R.id.tvProduct3Id);
 		storeProductClick(productId);
 	}
 
 	public void storeProduct4Click(View view) {
+		Log.i("StoreMainActivity - storeProduct4Click", "start");
 		TextView productId = (TextView) view.findViewById(R.id.tvProduct4Id);
-		storeProductClick(productId);
-	}
-
-	public void storeProduct5Click(View view) {
-		TextView productId = (TextView) view.findViewById(R.id.tvProduct5Id);
-		storeProductClick(productId);
-	}
-
-	public void storeProduct6Click(View view) {
-		TextView productId = (TextView) view.findViewById(R.id.tvProduct6Id);
-		storeProductClick(productId);
-	}
-
-	public void storeProduct7Click(View view) {
-		TextView productId = (TextView) view.findViewById(R.id.tvProduct7Id);
-		storeProductClick(productId);
-	}
-
-	public void storeProduct8Click(View view) {
-		TextView productId = (TextView) view.findViewById(R.id.tvProduct8Id);
 		storeProductClick(productId);
 	}
 
@@ -316,8 +302,10 @@ public class StoreMainActivity extends FragmentActivity implements
 		this.transactionDetailInfo.setProductId(product.getProductId());
 		this.transactionDetailInfo.setProductName(product.getName());
 		this.transactionDetailInfo.setQuantity(1);
-		this.transactionDetailInfo.setSizeType(product.getSizeQtyList().get(3)
-				.getSizeType());
+		if (product.getSizeQtyList().size() > 0) {
+			this.transactionDetailInfo.setSizeType(product.getSizeQtyList()
+					.get(3).getSizeType());
+		}
 		this.transactionDetailInfo.setUnitPrice(product.getUnitPrice());
 	}
 
@@ -344,21 +332,21 @@ public class StoreMainActivity extends FragmentActivity implements
 		return fList;
 	}
 
-	public void disableAllSize() {
-		ImageView sizeXXS = (ImageView) findViewById(R.id.storeDetailProductSizeXXS);
-		ImageView sizeXS = (ImageView) findViewById(R.id.storeDetailProductSizeXS);
-		ImageView sizeS = (ImageView) findViewById(R.id.storeDetailProductSizeS);
-		ImageView sizeM = (ImageView) findViewById(R.id.storeDetailProductSizeM);
-		ImageView sizeL = (ImageView) findViewById(R.id.storeDetailProductSizeL);
-		ImageView sizeXL = (ImageView) findViewById(R.id.storeDetailProductSizeXL);
-
-		sizeXXS.setImageAlpha(70);
-		sizeXS.setImageAlpha(70);
-		sizeS.setImageAlpha(70);
-		sizeM.setImageAlpha(70);
-		sizeL.setImageAlpha(70);
-		sizeXL.setImageAlpha(70);
-	}
+//	public void disableAllSize() {
+//		ImageView sizeXXS = (ImageView) findViewById(R.id.storeDetailProductSizeXXS);
+//		ImageView sizeXS = (ImageView) findViewById(R.id.storeDetailProductSizeXS);
+//		ImageView sizeS = (ImageView) findViewById(R.id.storeDetailProductSizeS);
+//		ImageView sizeM = (ImageView) findViewById(R.id.storeDetailProductSizeM);
+//		ImageView sizeL = (ImageView) findViewById(R.id.storeDetailProductSizeL);
+//		ImageView sizeXL = (ImageView) findViewById(R.id.storeDetailProductSizeXL);
+//
+//		sizeXXS.setImageAlpha(70);
+//		sizeXS.setImageAlpha(70);
+//		sizeS.setImageAlpha(70);
+//		sizeM.setImageAlpha(70);
+//		sizeL.setImageAlpha(70);
+//		sizeXL.setImageAlpha(70);
+//	}
 
 	public void storeDetailProductSizeClick(View view) {
 		Log.i("StoreMainActivity - storeDetailProductSizeClick", "Start");
@@ -369,7 +357,7 @@ public class StoreMainActivity extends FragmentActivity implements
 				+ sizeType.toString());
 		this.transactionDetailInfo.setSizeType(sizeType);
 		sizeImage.setImageAlpha(255);
-		this.disableAllSize();
+//		this.disableAllSize();
 	}
 
 	public void btnStoreDetailPreviousClick(View view) {
@@ -421,14 +409,15 @@ public class StoreMainActivity extends FragmentActivity implements
 		this.transactionDetailInfo.setProductId(product.getProductId());
 		this.transactionDetailInfo.setProductName(product.getName());
 		this.transactionDetailInfo.setQuantity(1);
-		this.transactionDetailInfo.setSizeType(product.getSizeQtyList().get(3)
-				.getSizeType());
+		if (product.getSizeQtyList().size() > 0) {
+			this.transactionDetailInfo.setSizeType(product.getSizeQtyList()
+					.get(3).getSizeType());
+		}
 		this.transactionDetailInfo.setUnitPrice(product.getUnitPrice());
 	}
 
 	void setStoreDetailPageChageLisener() {
-		ViewPager pager = (ViewPager) findViewById(R.id.storeDetailPager);
-		pager.setOnPageChangeListener(new OnPageChangeListener() {
+		this.mPager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageSelected(int arg0) {
